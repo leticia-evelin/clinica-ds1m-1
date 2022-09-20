@@ -1,8 +1,5 @@
 package br.senai.sp.jandira;
 
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.Paciente;
 import br.senai.sp.jandira.model.PlanoDeSaude;
