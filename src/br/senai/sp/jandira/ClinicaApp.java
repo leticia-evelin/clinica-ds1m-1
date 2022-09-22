@@ -41,6 +41,9 @@ public class ClinicaApp {
 		PlanoDeSaude plano2 = new PlanoDeSaude();
 		plano2.setOperadora("Bradesco");
 		plano2.setTipoDoPlano("Ouro");
+		
+		PlanoDeSaude plano3 = new PlanoDeSaude("Amil");
+		
 				
 		// Endereços
 		Endereco endereco1 = new Endereco();
