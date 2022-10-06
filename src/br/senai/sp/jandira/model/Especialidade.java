@@ -4,6 +4,11 @@ public class Especialidade {
 	
 	private String nome;
 	private String descricao;
+	private static int quantidade;
+	
+	public Especialidade() {
+		quantidade++;
+	}
 	
 	// Métodos de acesso getters and setters
 	public void setNome(String novoNome) {
@@ -22,4 +27,8 @@ public class Especialidade {
 		return descricao;
 	}
 	
+	public int getQuantidade() {
+		return quantidade;
+	}
+		
 }
