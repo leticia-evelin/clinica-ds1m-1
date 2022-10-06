@@ -6,6 +6,24 @@ import br.senai.sp.jandira.model.PlanoDeSaude;
 public class TesteDao {
 
     public static void main(String[] args) {
+        
+        String[] linha0 = {"Cotia", "Itapevi", "Jandira"};
+        String[] linha1 = {"Barueri", "Carapicuíba", "Pirapora"};
+        String[] linha2 = {"Osasco", "Itu", "Valinhos"};
+        String[] linha3 = {"Presidente Prudente", "São Roque", "Pindamonhangaba"};
+        
+        String[][] linhas = {linha0, linha1, linha2, linha3};
+        
+        System.out.println(linhas[2][2]);
+        
+        String[][] frutas = {
+            {"Banana", "Pera", "Maçã"}, 
+            {"Melancia", "Uva", "Abacate"},
+            {"Ameixa", "Pêssego", "Nectarina"}
+        };
+        
+        System.out.println(frutas[0][1]);
+        System.out.println(frutas[2][2]);
 
         PlanoDeSaude plano1 = new PlanoDeSaude("Amil", "Basic");
         PlanoDeSaude plano2 = new PlanoDeSaude("Allianz", "Bronze");
