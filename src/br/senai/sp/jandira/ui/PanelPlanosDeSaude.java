@@ -105,8 +105,8 @@ public class PanelPlanosDeSaude extends javax.swing.JPanel {
         int resposta = JOptionPane.showConfirmDialog(this,
                 "Você confirma a exclusão do plano de saúde selecionado?",
                 "Plano de Saúde",
-                JOptionPane.QUESTION_MESSAGE,
-                JOptionPane.YES_NO_OPTION);
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
         
         
         
