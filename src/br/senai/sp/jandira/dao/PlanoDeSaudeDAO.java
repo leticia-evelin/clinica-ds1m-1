@@ -18,8 +18,19 @@ public class PlanoDeSaudeDAO { // Simular nosso banco de dados
 
     }
 
+    // recebe plano de saúde, adiciona o planos de saúde no planos
     public static void gravar(PlanoDeSaude planoDeSaude) {
         planos.add(planoDeSaude);
+    }
+    
+    public static boolean excluir(Integer codigo){
+        for(PlanoDeSaude p : planos){
+            if(p.getCodigo().equals(codigo)){ 
+                planos.remove(p);
+                return true; // vai fazer a função do break
+            }
+        }
+        return false;
     }
 
     public static ArrayList<PlanoDeSaude> listarTodos() {

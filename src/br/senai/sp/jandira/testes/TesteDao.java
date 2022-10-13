@@ -48,6 +48,15 @@ public class TesteDao {
             System.out.println("Operadora: " + p.getOperadora());
             System.out.println("-------------------------");
         }
+        
+        PlanoDeSaudeDAO.excluir(101);
+        
+        System.out.println("---------------------------------------");
+        for (PlanoDeSaude p : PlanoDeSaudeDAO.listarTodos()) {
+            System.out.println("Código: " + p.getCodigo());
+            System.out.println("Operadora: " + p.getOperadora());
+            System.out.println("-------------------------");
+        }
 
 //		PlanoDeSaudeDAO dao = new PlanoDeSaudeDAO();
 //		dao.gravar(plano1);

@@ -5,6 +5,7 @@
 package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
@@ -63,16 +64,24 @@ public class PanelPlanosDeSaude extends javax.swing.JPanel {
         add(scrollTablePlanosDeSaude);
         scrollTablePlanosDeSaude.setBounds(20, 40, 905, 240);
 
+        buttonExcluirPlanoDeSaude.setForeground(new java.awt.Color(255, 255, 255));
         buttonExcluirPlanoDeSaude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/delete32-2.png"))); // NOI18N
         buttonExcluirPlanoDeSaude.setToolTipText("Excluir plano de saúde selecionado");
+        buttonExcluirPlanoDeSaude.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonExcluirPlanoDeSaudeActionPerformed(evt);
+            }
+        });
         add(buttonExcluirPlanoDeSaude);
         buttonExcluirPlanoDeSaude.setBounds(700, 294, 70, 60);
 
+        buttonAlterarPlanoDeSaude.setForeground(new java.awt.Color(255, 255, 255));
         buttonAlterarPlanoDeSaude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/caneta.png"))); // NOI18N
         buttonAlterarPlanoDeSaude.setToolTipText("Editar plano de saúde selecionado");
         add(buttonAlterarPlanoDeSaude);
         buttonAlterarPlanoDeSaude.setBounds(780, 294, 70, 60);
 
+        buttonAdicionarPlanoDeSaude.setForeground(new java.awt.Color(255, 255, 255));
         buttonAdicionarPlanoDeSaude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/mais.png"))); // NOI18N
         buttonAdicionarPlanoDeSaude.setToolTipText("Adicionar plano de saúde");
         buttonAdicionarPlanoDeSaude.addActionListener(new java.awt.event.ActionListener() {
@@ -87,7 +96,38 @@ public class PanelPlanosDeSaude extends javax.swing.JPanel {
     private void buttonAdicionarPlanoDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarPlanoDeSaudeActionPerformed
         DialogPlanosDeSaude dialogPlanosDeSaude = new DialogPlanosDeSaude(null, true);
         dialogPlanosDeSaude.setVisible(true);
+        
+        criarTabelaPlanosDeSaude();
     }//GEN-LAST:event_buttonAdicionarPlanoDeSaudeActionPerformed
+
+    private void buttonExcluirPlanoDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirPlanoDeSaudeActionPerformed
+          
+        int resposta = JOptionPane.showConfirmDialog(this,
+                "Você confirma a exclusão do plano de saúde selecionado?",
+                "Plano de Saúde",
+                JOptionPane.QUESTION_MESSAGE,
+                JOptionPane.YES_NO_OPTION);
+        
+        
+        
+        int linha = tablePlanosDeSaude.getSelectedRow();
+             
+            if (linha !=-1){
+            //Excluir o plano de saúde
+            String codigoStr = tablePlanosDeSaude.getValueAt(linha, 0).toString();
+            Integer codigo = Integer.valueOf(codigoStr);
+            PlanoDeSaudeDAO.excluir(codigo);
+            criarTabelaPlanosDeSaude();
+            
+            }else{
+                JOptionPane.showMessageDialog(
+                        this, 
+                        "Por favor, selecione o plano que você deseja escluir", 
+                        "Plano de Saúde",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+
+    }//GEN-LAST:event_buttonExcluirPlanoDeSaudeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -107,7 +147,7 @@ public class PanelPlanosDeSaude extends javax.swing.JPanel {
         tablePlanosDeSaude.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         // Definir a largura de cada coluna
-        tablePlanosDeSaude.getColumnModel().getColumn(0).setPreferredWidth(300);
+        tablePlanosDeSaude.getColumnModel().getColumn(0).setPreferredWidth(100);
         tablePlanosDeSaude.getColumnModel().getColumn(1).setPreferredWidth(300);
         tablePlanosDeSaude.getColumnModel().getColumn(2).setPreferredWidth(300);
 

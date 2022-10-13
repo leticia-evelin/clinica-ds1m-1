@@ -50,7 +50,7 @@ public class HomeFrame extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(204, 153, 255));
+        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
         jPanel1.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -91,7 +91,7 @@ public class HomeFrame extends javax.swing.JFrame {
         buttonPlanosDeSaude.setBounds(450, 100, 80, 60);
 
         buttonEspecialidades.setBackground(new java.awt.Color(204, 204, 204));
-        buttonEspecialidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/especialidades32.png"))); // NOI18N
+        buttonEspecialidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/list.png"))); // NOI18N
         buttonEspecialidades.setToolTipText("Especialidades");
         buttonEspecialidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,7 +102,7 @@ public class HomeFrame extends javax.swing.JFrame {
         buttonEspecialidades.setBounds(360, 100, 80, 60);
 
         buttonPacientes.setBackground(new java.awt.Color(204, 204, 204));
-        buttonPacientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/sick32.png"))); // NOI18N
+        buttonPacientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/patient.png"))); // NOI18N
         buttonPacientes.setToolTipText("Pacientes");
         buttonPacientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,7 +127,7 @@ public class HomeFrame extends javax.swing.JFrame {
         panelHome.setLayout(null);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(153, 102, 255));
+        jLabel4.setForeground(new java.awt.Color(153, 153, 255));
         jLabel4.setText("SISACON");
         panelHome.add(jLabel4);
         jLabel4.setBounds(10, 60, 600, 60);
