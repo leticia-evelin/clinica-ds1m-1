@@ -57,6 +57,15 @@ public class TesteDao {
             System.out.println("Operadora: " + p.getOperadora());
             System.out.println("-------------------------");
         }
+        
+        //Testar o método getPlanoDeSaude() do DAO
+        PlanoDeSaude p = PlanoDeSaudeDAO.getPlanoDeSaude(100);
+        System.out.println("Código: " + p.getCodigo());
+        System.out.println("Operadora: " + p.getOperadora());
+
+        
+        int i = PlanoDeSaudeDAO.listarTodos().indexOf(plano4);
+        System.out.println(i);
 
 //		PlanoDeSaudeDAO dao = new PlanoDeSaudeDAO();
 //		dao.gravar(plano1);
