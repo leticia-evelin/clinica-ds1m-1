@@ -92,7 +92,9 @@ public class PanelPlanosDeSaude extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonAdicionarPlanoDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarPlanoDeSaudeActionPerformed
-        DialogPlanosDeSaude dialogPlanosDeSaude = new DialogPlanosDeSaude(
+        
+        DialogPlanosDeSaude dialogPlanosDeSaude =
+                new DialogPlanosDeSaude(
                 null, 
                 true, 
                 TipoOperacao.ADICIONAR,
@@ -106,7 +108,7 @@ public class PanelPlanosDeSaude extends javax.swing.JPanel {
     private void buttonExcluirPlanoDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirPlanoDeSaudeActionPerformed
 
         //Obtemos o índice da linha selecionada na tabela
-       linha = tablePlanosDeSaude.getSelectedRow();
+      linha = tablePlanosDeSaude.getSelectedRow();
 
         //Verificamos se a linha é diferente de -1
         // -1 significa que o usuário não selecionou nada
@@ -142,13 +144,14 @@ public class PanelPlanosDeSaude extends javax.swing.JPanel {
         
         PlanoDeSaude planoDeSaude = PlanoDeSaudeDAO.getPlanoDeSaude(getCodigo());
         
-        DialogPlanosDeSaude planosDeSaudeDialog = new DialogPlanosDeSaude(
+        DialogPlanosDeSaude dialogPlanosDeSaude = 
+                new DialogPlanosDeSaude(
                 null, 
                 true,
                 TipoOperacao.ALTERAR,
                 planoDeSaude);
         
-       planosDeSaudeDialog.setVisible(true);
+       dialogPlanosDeSaude.setVisible(true);
        criarTabelaPlanosDeSaude();
     }
     

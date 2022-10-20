@@ -63,28 +63,14 @@ public class DialogPlanosDeSaude extends javax.swing.JDialog {
         getContentPane().setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel2.setLayout(null);
 
         labelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         labelTitulo.setForeground(new java.awt.Color(255, 255, 255));
         labelTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/mais.png"))); // NOI18N
         labelTitulo.setText("  Planos de Saúde - ADICIONAR");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(91, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
-        );
+        jPanel2.add(labelTitulo);
+        labelTitulo.setBounds(29, 36, 530, 33);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(0, 0, 650, 100);
@@ -170,6 +156,7 @@ public class DialogPlanosDeSaude extends javax.swing.JDialog {
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
       
         if(tipoOperacao == TipoOperacao.ADICIONAR) {
+            
             gravar();
         }else{
             atualizar(); 
@@ -182,12 +169,18 @@ public class DialogPlanosDeSaude extends javax.swing.JDialog {
         
         planoDeSaude.setOperadora(textNomeDaOperadora.getText());
         planoDeSaude.setTipoDoPlano(textTipoDoPlano.getText());
-        PlanoDeSaudeDAO.atualizar(planoDeSaude);
-        JOptionPane.showMessageDialog(null,
-                "Plano de Saúde atualizado com sucesso",
-                "Plano de Saúde",
-                JOptionPane.INFORMATION_MESSAGE);
-        dispose();
+        
+        if(validarCadastro()){
+            PlanoDeSaudeDAO.atualizar(planoDeSaude);
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Plano de Saúde atualizado com sucesso",
+                    "Plano de Saúde",
+                    JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+        }
+        
     }
     
     private void gravar() {
@@ -221,6 +214,7 @@ public class DialogPlanosDeSaude extends javax.swing.JDialog {
     }
     
     if (textTipoDoPlano.getText().isEmpty()) {
+        
         JOptionPane.showMessageDialog(this, 
                 "Por favor preencha o tipo do plano!", 
                 "Plano de Saúde", 

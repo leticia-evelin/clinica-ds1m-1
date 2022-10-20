@@ -1,8 +1,9 @@
 package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
+import java.awt.Color;
+//import javax.swing.JOptionPane;
+//import javax.swing.JTable;
 
 public class HomeFrame extends javax.swing.JFrame {
 
@@ -15,6 +16,7 @@ public class HomeFrame extends javax.swing.JFrame {
     
     // Atributos da classe
     PanelPlanosDeSaude panelPlanosDeSaude;
+    PanelEspecialidades panelEspecialidades;
     
     // Constantes da classe
     private final int POSICAO_X = 10;
@@ -190,7 +192,9 @@ public class HomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonPacientesActionPerformed
 
     private void buttonEspecialidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEspecialidadesActionPerformed
-        // TODO add your handling code here:
+        panelHome.setVisible(false);
+        panelEspecialidades.setVisible(true);
+       
     }//GEN-LAST:event_buttonEspecialidadesActionPerformed
 
     private void buttonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHomeActionPerformed
@@ -232,6 +236,7 @@ public class HomeFrame extends javax.swing.JFrame {
                 POSICAO_LARGURA, 
                 POSICAO_ALTURA);
         getContentPane().add(panelPlanosDeSaude);
+        panelPlanosDeSaude.setVisible(false);
     }
 
     
