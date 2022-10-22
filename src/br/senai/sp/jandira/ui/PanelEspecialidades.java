@@ -5,6 +5,7 @@
 package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.EspecialidadesDAO;
+import javax.swing.JTable;
 
 
 public class PanelEspecialidades extends javax.swing.JPanel {
@@ -12,7 +13,7 @@ public class PanelEspecialidades extends javax.swing.JPanel {
     
     public PanelEspecialidades() {
         initComponents();
-        //criarTabelaEspecialidades();
+        criarTabelaEspecialidades();
     }
 
     
@@ -98,9 +99,26 @@ public class PanelEspecialidades extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
  
     private void criarTabelaEspecialidades() {
-        //tabelaEspecialidades.setModel(EspecialidadesDAO.get);
+        tabelaEspecialidades.setModel(EspecialidadesDAO.getTableModel());
     
-}
+        
+        tabelaEspecialidades.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        
+        // largura das colunas
+        tabelaEspecialidades.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tabelaEspecialidades.getColumnModel().getColumn(1).setPreferredWidth(350);
+        tabelaEspecialidades.getColumnModel().getColumn(2).setPreferredWidth(350);
+        
+         // bloquear movimentação das colunas
+         tabelaEspecialidades.getTableHeader().setReorderingAllowed(false);
+         
+         // bloquear edição 
+         tabelaEspecialidades.setDefaultEditor(Object.class, null);
+    
+    
+    
+    }      
+       
 
 
 

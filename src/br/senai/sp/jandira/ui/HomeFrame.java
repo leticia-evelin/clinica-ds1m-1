@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.ui;
 
+import br.senai.sp.jandira.dao.EspecialidadesDAO;
 import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
 import java.awt.Color;
 //import javax.swing.JOptionPane;
@@ -10,6 +11,7 @@ public class HomeFrame extends javax.swing.JFrame {
     public HomeFrame() {
         initComponents();
         PlanoDeSaudeDAO.criarPlanosDeSaudeTeste();
+        EspecialidadesDAO.criarEspecialidades();
         initPanels();
         
     }
@@ -194,7 +196,8 @@ public class HomeFrame extends javax.swing.JFrame {
     private void buttonEspecialidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEspecialidadesActionPerformed
         panelHome.setVisible(false);
         panelEspecialidades.setVisible(true);
-       
+        buttonEspecialidades.setBackground(new java.awt.Color(153,255,153));
+        buttonHome.setBackground(new java.awt.Color(204,204,204));
     }//GEN-LAST:event_buttonEspecialidadesActionPerformed
 
     private void buttonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHomeActionPerformed
@@ -205,7 +208,7 @@ public class HomeFrame extends javax.swing.JFrame {
         panelPlanosDeSaude.setVisible(false);
         buttonHome.setBackground(new java.awt.Color(153,255,153));
         buttonPlanosDeSaude.setBackground(new java.awt.Color(204,204,204));
-       
+        buttonEspecialidades.setBackground(new java.awt.Color(204,204,204));
     }//GEN-LAST:event_buttonHomeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -237,9 +240,18 @@ public class HomeFrame extends javax.swing.JFrame {
                 POSICAO_ALTURA);
         getContentPane().add(panelPlanosDeSaude);
         panelPlanosDeSaude.setVisible(false);
+        
+        
+        panelEspecialidades = new PanelEspecialidades();
+        panelEspecialidades.setBounds(
+                POSICAO_X,
+                POSICAO_Y,
+                POSICAO_LARGURA,
+                POSICAO_ALTURA);
+        getContentPane().add(panelEspecialidades);
+        panelEspecialidades.setVisible(false);
     }
 
-    
     
   
 }
