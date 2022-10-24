@@ -2,16 +2,13 @@ package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.EspecialidadesDAO;
 import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
-import java.awt.Color;
-//import javax.swing.JOptionPane;
-//import javax.swing.JTable;
 
 public class HomeFrame extends javax.swing.JFrame {
 
     public HomeFrame() {
         initComponents();
-        PlanoDeSaudeDAO.criarPlanosDeSaudeTeste();
-        EspecialidadesDAO.criarEspecialidades();
+        PlanoDeSaudeDAO.criarPlanosDeSaudeTeste(); // Plano de saúde
+        EspecialidadesDAO.criarEspecialidades(); // Especialidades
         initPanels();
         
     }
@@ -181,8 +178,6 @@ public class HomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonMedicosActionPerformed
 
     private void buttonPlanosDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPlanosDeSaudeActionPerformed
-
-        
         panelHome.setVisible(false);
         panelPlanosDeSaude.setVisible(true);
         buttonPlanosDeSaude.setBackground(new java.awt.Color(153,255,153));
@@ -201,9 +196,6 @@ public class HomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonEspecialidadesActionPerformed
 
     private void buttonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHomeActionPerformed
-       
-       
-        
         panelHome.setVisible(true);
         panelPlanosDeSaude.setVisible(false);
         buttonHome.setBackground(new java.awt.Color(153,255,153));
@@ -232,6 +224,7 @@ public class HomeFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void initPanels() {
+        // painel planos de saúde
         panelPlanosDeSaude = new PanelPlanosDeSaude();
         panelPlanosDeSaude.setBounds(
                 POSICAO_X, 
@@ -241,7 +234,7 @@ public class HomeFrame extends javax.swing.JFrame {
         getContentPane().add(panelPlanosDeSaude);
         panelPlanosDeSaude.setVisible(false);
         
-        
+        // painel especialidades
         panelEspecialidades = new PanelEspecialidades();
         panelEspecialidades.setBounds(
                 POSICAO_X,

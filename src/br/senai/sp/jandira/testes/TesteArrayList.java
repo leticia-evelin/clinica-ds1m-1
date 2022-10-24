@@ -63,7 +63,7 @@ public class TesteArrayList {
 		
 		Especialidade teste = new Especialidade();
 		
-		e1.getQuantidade();
+		//e1.getQuantidade();
 		
 		ArrayList<Especialidade> especialidades = new ArrayList<>();
 		especialidades.add(e1);
@@ -74,20 +74,20 @@ public class TesteArrayList {
 			System.out.printf("%s --> %s\n", e.getNome(), e.getDescricao());
 		}
 		
-		System.out.println(e1.getQuantidade());
-		System.out.println(e2.getQuantidade());
-		System.out.println(e3.getQuantidade());
-		
-		
-		System.out.println(e1.getQuantidade());
-		System.out.println(e2.getQuantidade());
-		System.out.println(e3.getQuantidade());
-		
-		
-		System.out.println(e1.getQuantidade());
-		System.out.println(e2.getQuantidade());
-		System.out.println(e3.getQuantidade());
-		
+//		System.out.println(e1.getQuantidade());
+//		System.out.println(e2.getQuantidade());
+//		System.out.println(e3.getQuantidade());
+//		
+//		
+//		System.out.println(e1.getQuantidade());
+//		System.out.println(e2.getQuantidade());
+//		System.out.println(e3.getQuantidade());
+//		
+//		
+//		System.out.println(e1.getQuantidade());
+//		System.out.println(e2.getQuantidade());
+//		System.out.println(e3.getQuantidade());
+//		
 	}
 
 }

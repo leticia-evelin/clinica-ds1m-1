@@ -63,14 +63,16 @@ public class EspecialidadesDAO { // Simular nosso banco de dados
    public static void criarEspecialidades() {
 		
         Especialidade e1 = new Especialidade("Cardiologia", "Cuida do coração");
-        Especialidade e2 = new Especialidade("Otorrino", "Cuidado ouvido");
+        Especialidade e2 = new Especialidade("Otorrino", "Cuida do ouvido");
         Especialidade e3 = new Especialidade("Fisioterapia", "Cuida dos ossos e músculos");
-        Especialidade e4 = new Especialidade("Oftalmo", "Cuida da visão");
+        Especialidade e4 = new Especialidade("Oftalmologista", "Cuida da visão");
+        Especialidade e5 = new Especialidade("Pnelmologista", "Cuida do pulmão");
         
         especialidades.add(e1);
         especialidades.add(e2);
         especialidades.add(e3);
         especialidades.add(e4);
+        especialidades.add(e5);
         
         }
    

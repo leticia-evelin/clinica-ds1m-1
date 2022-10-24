@@ -119,7 +119,7 @@ public class PanelPlanosDeSaude extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(
                     this,
-                    "Por favor, selecione o plano que você deseja escluir",
+                    "Por favor, selecione o plano que você deseja excluir",
                     "Plano de Saúde",
                     JOptionPane.ERROR_MESSAGE);
         }

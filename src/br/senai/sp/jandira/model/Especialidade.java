@@ -2,12 +2,12 @@ package br.senai.sp.jandira.model;
 
 public class Especialidade {
 	
-        private static int contador = 0;
+        private static int contador = 10;
         private Integer codigo;
 	private String nome;
 	private String descricao;
         
-	//private static int quantidade;
+	
 	
         
         // Construtores da classe

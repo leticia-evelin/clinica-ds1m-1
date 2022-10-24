@@ -4,42 +4,44 @@
  */
 package br.senai.sp.jandira.ui;
 
-import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
-import br.senai.sp.jandira.model.PlanoDeSaude;
+import br.senai.sp.jandira.dao.EspecialidadesDAO;
+import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.TipoOperacao;
 import javax.swing.JOptionPane;
 
-
-public class DialogPlanosDeSaude extends javax.swing.JDialog {
+public class DialogEspecialidades extends javax.swing.JDialog {
 
     private TipoOperacao tipoOperacao;
-    private PlanoDeSaude planoDeSaude;
+    private Especialidade especialidade;
     
-    public DialogPlanosDeSaude(
+    public DialogEspecialidades(
             java.awt.Frame parent, 
-            boolean modal, 
+            boolean modal,
             TipoOperacao tipoOperacao,
-            PlanoDeSaude planoDeSaude) {
+            Especialidade especialidade) {
         
         super(parent, modal);
         initComponents();
         this.tipoOperacao = tipoOperacao;
-        this.planoDeSaude = planoDeSaude;
+        this.especialidade = especialidade;
         
-        // Preencher os campos, caso o tipo de operação for ALTERAR
+        
+         // Preencher os campos, se o tipo de operação for ALTERAR
         if(tipoOperacao == TipoOperacao.ALTERAR) {
             preencherFormulario();
         }
     }
 
+    
     private void preencherFormulario() {
-        labelTitulo.setText("Planos de Saúde -" + tipoOperacao);
-        labelTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/editar.png")));
-        textCodigo.setText(planoDeSaude.getCodigo().toString());
-        textNomeDaOperadora.setText(planoDeSaude.getOperadora());
-        textTipoDoPlano.setText(planoDeSaude.getTipoDoPlano());
-        
+        labelTitulo.setText("Especialidades -" + tipoOperacao);
+        labelTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/list.png")));
+        textCodigo.setText(especialidade.getCodigo().toString());
+        textNomeDaEspecialidade.setText(especialidade.getNome());
+        textDescricaoDaEspecialidade.setText(especialidade.getDescricao());
+       
     }
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -52,14 +54,13 @@ public class DialogPlanosDeSaude extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         textCodigo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        textNomeDaOperadora = new javax.swing.JTextField();
+        textNomeDaEspecialidade = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        textTipoDoPlano = new javax.swing.JTextField();
+        textDescricaoDaEspecialidade = new javax.swing.JTextField();
         buttonSalvar = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setResizable(false);
         getContentPane().setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 255));
@@ -67,8 +68,8 @@ public class DialogPlanosDeSaude extends javax.swing.JDialog {
 
         labelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         labelTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        labelTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/mais.png"))); // NOI18N
-        labelTitulo.setText("  Planos de Saúde - ADICIONAR");
+        labelTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/list.png"))); // NOI18N
+        labelTitulo.setText("  Especialidades - ADICIONAR");
         jPanel2.add(labelTitulo);
         labelTitulo.setBounds(29, 36, 530, 33);
 
@@ -79,7 +80,7 @@ public class DialogPlanosDeSaude extends javax.swing.JDialog {
         jPanel1.setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("Detalhes do Plano de Saúde");
+        jLabel2.setText("Detalhes da Especialidade");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(20, 10, 190, 20);
 
@@ -96,23 +97,23 @@ public class DialogPlanosDeSaude extends javax.swing.JDialog {
         jPanel1.add(textCodigo);
         textCodigo.setBounds(20, 72, 90, 30);
 
-        jLabel4.setText("Nome da operadora:");
+        jLabel4.setText("Nome da Especialidade:");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(20, 110, 130, 16);
+        jLabel4.setBounds(20, 110, 180, 16);
 
-        textNomeDaOperadora.addActionListener(new java.awt.event.ActionListener() {
+        textNomeDaEspecialidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textNomeDaOperadoraActionPerformed(evt);
+                textNomeDaEspecialidadeActionPerformed(evt);
             }
         });
-        jPanel1.add(textNomeDaOperadora);
-        textNomeDaOperadora.setBounds(20, 130, 580, 30);
+        jPanel1.add(textNomeDaEspecialidade);
+        textNomeDaEspecialidade.setBounds(20, 130, 580, 30);
 
-        jLabel6.setText("Tipo do Plano:");
+        jLabel6.setText("Descrição da Especialidade");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(20, 170, 110, 16);
-        jPanel1.add(textTipoDoPlano);
-        textTipoDoPlano.setBounds(20, 190, 580, 30);
+        jLabel6.setBounds(20, 170, 210, 16);
+        jPanel1.add(textDescricaoDaEspecialidade);
+        textDescricaoDaEspecialidade.setBounds(20, 190, 580, 30);
 
         buttonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/floppy-disk.png"))); // NOI18N
         buttonSalvar.setToolTipText("Salvar");
@@ -144,91 +145,91 @@ public class DialogPlanosDeSaude extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_textCodigoActionPerformed
 
-    private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
-        dispose();
-        
-    }//GEN-LAST:event_buttonCancelarActionPerformed
-
-    private void textNomeDaOperadoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNomeDaOperadoraActionPerformed
+    private void textNomeDaEspecialidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNomeDaEspecialidadeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textNomeDaOperadoraActionPerformed
+    }//GEN-LAST:event_textNomeDaEspecialidadeActionPerformed
 
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
-      
+
         if(tipoOperacao == TipoOperacao.ADICIONAR) {
             
             gravar();
         }else{
-            atualizar(); 
+            atualizar();
         }
-        
-     
+       
+
     }//GEN-LAST:event_buttonSalvarActionPerformed
+
+    private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
+        dispose();
+
+    }//GEN-LAST:event_buttonCancelarActionPerformed
 
     private void atualizar() {
         
-        planoDeSaude.setOperadora(textNomeDaOperadora.getText());
-        planoDeSaude.setTipoDoPlano(textTipoDoPlano.getText());
+        especialidade.setNome(textNomeDaEspecialidade.getText());
+        especialidade.setDescricao(textDescricaoDaEspecialidade.getText());
         
-        if(validarCadastro()){
-            PlanoDeSaudeDAO.atualizar(planoDeSaude);
-
+        if(validarCadastro()) {
+            EspecialidadesDAO.atualizar(especialidade);
+                    
             JOptionPane.showMessageDialog(
                     null,
-                    "Plano de Saúde atualizado com sucesso",
-                    "Plano de Saúde",
+                    "Especialidade atualizada com sucesso",
+                    "Especialidade",
                     JOptionPane.INFORMATION_MESSAGE);
             dispose();
         }
-        
     }
+
     
     private void gravar() {
-        // Criar um objeto Plano de Sáude
-        PlanoDeSaude planoDeSaude = new PlanoDeSaude();
-        planoDeSaude.setOperadora(textNomeDaOperadora.getText());
-        planoDeSaude.setTipoDoPlano(textTipoDoPlano.getText());
+        // objeto especialidade
+        Especialidade especialidade = new Especialidade();
+        especialidade.setNome(textNomeDaEspecialidade.getText());
+        especialidade.setDescricao(textDescricaoDaEspecialidade.getText());
         
-        if(validarCadastro()){
-            PlanoDeSaudeDAO.gravar(planoDeSaude);
-            JOptionPane.showMessageDialog(this,
-                    "Plano de Saúde gravado com sucesso!", 
-                    "Plano de Saúde", 
+        if(validarCadastro()) {
+            EspecialidadesDAO.gravar(especialidade);
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Especialidade atualizada com sucesso!",
+                    "Especialidade",
                     JOptionPane.INFORMATION_MESSAGE);
             
             dispose();
         }
-    }
+    }   
+ 
     
     private boolean validarCadastro() {
+       
+        if(textNomeDaEspecialidade.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Por favor, preencha o nome da especialidade!",
+                    "Especialidade",
+                    JOptionPane.ERROR_MESSAGE);
+            
+            textNomeDaEspecialidade.requestFocus();
+            return false;
+        }
         
-    if (textNomeDaOperadora.getText().isEmpty()) {
-        JOptionPane.showMessageDialog(this,
-                "Por favor preencha o nome da operadora!", 
-                "Plano de Saúde", 
-                JOptionPane.ERROR_MESSAGE);
+        if(textDescricaoDaEspecialidade.getText().isEmpty()) {
+            
+            JOptionPane.showMessageDialog(this,
+                    "Por favor, preencha a descrição da especialidade!",
+                    "Especialidade",
+                    JOptionPane.ERROR_MESSAGE);
+            
+            textDescricaoDaEspecialidade.requestFocus();
+            return false;
+        }
         
-        textNomeDaOperadora.requestFocus();
-        
-    return false;
+        return true;
+  
     }
-    
-    if (textTipoDoPlano.getText().isEmpty()) {
-        
-        JOptionPane.showMessageDialog(this, 
-                "Por favor preencha o tipo do plano!", 
-                "Plano de Saúde", 
-                JOptionPane.ERROR_MESSAGE);
-        
-        textTipoDoPlano.requestFocus();
-        
-        return false;
-    }
-    
-    return true;
-    
-}     
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancelar;
@@ -241,7 +242,7 @@ public class DialogPlanosDeSaude extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JTextField textCodigo;
-    private javax.swing.JTextField textNomeDaOperadora;
-    private javax.swing.JTextField textTipoDoPlano;
+    private javax.swing.JTextField textDescricaoDaEspecialidade;
+    private javax.swing.JTextField textNomeDaEspecialidade;
     // End of variables declaration//GEN-END:variables
 }
