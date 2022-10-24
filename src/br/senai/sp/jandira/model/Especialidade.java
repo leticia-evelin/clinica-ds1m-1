@@ -64,8 +64,6 @@ public class Especialidade {
         public static int getContador() {
             return contador;
         } 
-//	public int getQuantidade() {
-//		return quantidade;
-//	}
+
 		
 }
