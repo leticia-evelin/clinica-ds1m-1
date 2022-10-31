@@ -2,7 +2,7 @@ package br.senai.sp.jandira.model;
 
 public class Especialidade {
 	
-        private static int contador = 10;
+        //private static int contador = 10;
         private Integer codigo;
 	private String nome;
 	private String descricao;
@@ -31,8 +31,8 @@ public class Especialidade {
         
 	public void atualizarCodigo() {
             
-            this.codigo = contador;
-            contador++;
+            //this.codigo = contador;
+            //contador++;
         }
             
             
@@ -62,8 +62,12 @@ public class Especialidade {
         }
         
         public static int getContador() {
-            return contador;
+            //return contador;
         } 
+        
+        public String getEspecialidadeSeparadoPorPontoEVirgula() {
+            return this.codigo + ";" + this.nome + ";" + this.descricao;
+        }
 
 		
 }

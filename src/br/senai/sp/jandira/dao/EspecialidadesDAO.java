@@ -2,13 +2,25 @@
 package br.senai.sp.jandira.dao;
 
 import br.senai.sp.jandira.model.Especialidade;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class EspecialidadesDAO { // Simular nosso banco de dados
     
     private Especialidade especialidade;
     private static ArrayList<Especialidade> especialidades = new ArrayList<>();
+    private static final String ARQUIVO = "C:\\Users\\22282118\\projeto-java\\especialidade.txt";
+    private static final Path PATH = Paths.get(ARQUIVO);
     
    public EspecialidadesDAO(Especialidade especialidade) {
        this.especialidades.add(especialidade);
@@ -21,6 +33,28 @@ public class EspecialidadesDAO { // Simular nosso banco de dados
    
    public static void gravar(Especialidade especialidade) {
        especialidades.add(especialidade);
+       
+       // Gravar a especialidade no arquivo especialidade.txt
+       
+           //buffer de escrita
+        try {
+            BufferedWriter bw = Files.newBufferedWriter(
+                    PATH,
+                    StandardOpenOption.APPEND,
+                    StandardOpenOption.WRITE);
+            
+            bw.write(especialidade.getEspecialidadeSeparadoPorPontoEVirgula());
+            bw.newLine();
+            bw.close();
+            
+        } catch (IOException ex) {
+           JOptionPane.showMessageDialog(
+                   null,
+                   "Ocorreu um erro ao gravar.\n\nEntre em contato com o suporte.",
+                   "Erro ao gravar",
+                   JOptionPane.ERROR_MESSAGE);
+        }
+   
    }
    
    public static boolean excluir (Integer codigo) {
@@ -62,19 +96,45 @@ public class EspecialidadesDAO { // Simular nosso banco de dados
    // Criar e inserir na lista de planos
    public static void criarEspecialidades() {
 		
-        Especialidade e1 = new Especialidade("Cardiologia", "Cuida do coração");
-        Especialidade e2 = new Especialidade("Otorrino", "Cuida do ouvido");
-        Especialidade e3 = new Especialidade("Fisioterapia", "Cuida dos ossos e músculos");
-        Especialidade e4 = new Especialidade("Oftalmologista", "Cuida da visão");
-        Especialidade e5 = new Especialidade("Pnelmologista", "Cuida do pulmão");
-        
-        especialidades.add(e1);
-        especialidades.add(e2);
-        especialidades.add(e3);
-        especialidades.add(e4);
-        especialidades.add(e5);
-        
+//        Especialidade e1 = new Especialidade("Cardiologia", "Cuida do coração");
+//        Especialidade e2 = new Especialidade("Otorrino", "Cuida do ouvido");
+//        Especialidade e3 = new Especialidade("Fisioterapia", "Cuida dos ossos e músculos");
+//        Especialidade e4 = new Especialidade("Oftalmologista", "Cuida da visão");
+//        Especialidade e5 = new Especialidade("Pnelmologista", "Cuida do pulmão");
+//        
+//        especialidades.add(e1);
+//        especialidades.add(e2);
+//        especialidades.add(e3);
+//        especialidades.add(e4);
+//        especialidades.add(e5);
+           Path path = Paths.get(ARQUIVO);
+
+         BufferedReader br;
+        try {
+            br = Files.newBufferedReader(path);
+            
+             String linha = "";
+            
+            linha = br.readLine();
+            
+            while(linha != null) {
+                String[] linhaVetor = linha.split(";");
+                 System.out.println(linhaVetor[0]);
+                 System.out.println(linhaVetor[1]);
+                 System.out.println(linhaVetor[2]);
+                 System.out.println("-----------------------");
+                 linha = br.readLine();
+            }
+                
+            System.out.println("Fim do arquivo (EOF)");
+            
+            br.close();
+            
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro.");
         }
+        
+    }
    
 
    
@@ -98,9 +158,4 @@ public class EspecialidadesDAO { // Simular nosso banco de dados
         
         return tableModel;
     }
-    
-    
-    
-   
-    
 }

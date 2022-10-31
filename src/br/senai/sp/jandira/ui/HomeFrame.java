@@ -148,7 +148,7 @@ public class HomeFrame extends javax.swing.JFrame {
         panelHome.add(jLabel6);
         jLabel6.setBounds(10, 250, 190, 16);
 
-        jLabel7.setText("Telefone(11) 95555-5555");
+        jLabel7.setText("Telefone (11) 95555-5555");
         panelHome.add(jLabel7);
         jLabel7.setBounds(10, 270, 160, 16);
 
