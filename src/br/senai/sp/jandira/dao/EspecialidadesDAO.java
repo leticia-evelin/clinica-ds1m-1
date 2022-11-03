@@ -10,8 +10,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -94,8 +92,37 @@ public class EspecialidadesDAO { // Simular nosso banco de dados
    
    
    // Criar e inserir na lista de planos
-   public static void criarEspecialidades() {
+   public static void getListaEspecialidades() {
 		
+        
+        try {
+             BufferedReader br = Files.newBufferedReader(PATH);
+           
+             String linha = br.readLine();
+            
+            //linha = br.readLine();
+            
+            while(linha != null && !linha.isEmpty()) {
+                String[] linhaVetor = linha.split(";");
+                Especialidade novoEspecialidade = new Especialidade(
+                        Integer.valueOf(linhaVetor[0]),
+                       linhaVetor[1],
+                       linhaVetor[2]);
+                especialidades.add(novoEspecialidade);
+                linha = br.readLine();
+            }
+            
+            br.close();
+            
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(
+                    null, "Ocorreu um erro ao abrir o arquivo",
+                    "Erro de leitura",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        
+       
+       
 //        Especialidade e1 = new Especialidade("Cardiologia", "Cuida do coração");
 //        Especialidade e2 = new Especialidade("Otorrino", "Cuida do ouvido");
 //        Especialidade e3 = new Especialidade("Fisioterapia", "Cuida dos ossos e músculos");
@@ -107,33 +134,7 @@ public class EspecialidadesDAO { // Simular nosso banco de dados
 //        especialidades.add(e3);
 //        especialidades.add(e4);
 //        especialidades.add(e5);
-           Path path = Paths.get(ARQUIVO);
-
-         BufferedReader br;
-        try {
-            br = Files.newBufferedReader(path);
-            
-             String linha = "";
-            
-            linha = br.readLine();
-            
-            while(linha != null) {
-                String[] linhaVetor = linha.split(";");
-                 System.out.println(linhaVetor[0]);
-                 System.out.println(linhaVetor[1]);
-                 System.out.println(linhaVetor[2]);
-                 System.out.println("-----------------------");
-                 linha = br.readLine();
-            }
-                
-            System.out.println("Fim do arquivo (EOF)");
-            
-            br.close();
-            
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Ocorreu um erro.");
-        }
-        
+         
     }
    
 

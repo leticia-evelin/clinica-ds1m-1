@@ -2,7 +2,7 @@ package br.senai.sp.jandira.model;
 
 public class Especialidade {
 	
-        //private static int contador = 10;
+        private static int contador = 10;
         private Integer codigo;
 	private String nome;
 	private String descricao;
@@ -26,15 +26,21 @@ public class Especialidade {
                 
         
 	public Especialidade() {
-           atualizarCodigo();
+               atualizarCodigo();
 	}
         
-	public void atualizarCodigo() {
-            
-            //this.codigo = contador;
-            //contador++;
+        public Especialidade (Integer codigo, String nome, String descricao) {
+            this.codigo = codigo;
+            this.nome = nome;
+            this.descricao = descricao;
+            this.contador = this.codigo++;
         }
-            
+          
+         public void atualizarCodigo() {
+            //acumular antes e criar depois
+            contador++;
+            this.codigo = contador;
+        }
             
 	// Métodos de acesso getters and setters
         public Integer getCodigo() {
@@ -62,11 +68,13 @@ public class Especialidade {
         }
         
         public static int getContador() {
-            //return contador;
+            return contador;
         } 
         
         public String getEspecialidadeSeparadoPorPontoEVirgula() {
-            return this.codigo + ";" + this.nome + ";" + this.descricao;
+            String especialidadeStr = this.codigo + ";" + this.nome + ";" + this.descricao;
+            return especialidadeStr;
+            
         }
 
 		
