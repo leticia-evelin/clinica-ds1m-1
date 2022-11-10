@@ -185,21 +185,10 @@ public class PanelEspecialidades extends javax.swing.JPanel {
         tabelaEspecialidades.getColumnModel().getColumn(1).setPreferredWidth(350);
         tabelaEspecialidades.getColumnModel().getColumn(2).setPreferredWidth(350);
         
-         // bloquear movimentação das colunas
-         tabelaEspecialidades.getTableHeader().setReorderingAllowed(false);
+        // bloquear movimentação das colunas
+        tabelaEspecialidades.getTableHeader().setReorderingAllowed(false);
          
-         // bloquear edição 
-         tabelaEspecialidades.setDefaultEditor(Object.class, null);
-    
-    
-    
+        // bloquear edição 
+        tabelaEspecialidades.setDefaultEditor(Object.class, null);
     }      
-
-   
-       
-
-
-
-
-
 }
