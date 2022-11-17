@@ -5,6 +5,8 @@
 package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.MedicoDAO;
+import br.senai.sp.jandira.model.Medico;
+import br.senai.sp.jandira.model.TipoOperacao;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
@@ -55,7 +57,7 @@ public class PanelMedicos extends javax.swing.JPanel {
         jLabel1.setBounds(20, 10, 150, 24);
 
         buttonExcluirMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/delete32-2.png"))); // NOI18N
-        buttonExcluirMedico.setToolTipText("Excluir especialidade selecionada");
+        buttonExcluirMedico.setToolTipText("Excluir médico selecionado");
         buttonExcluirMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonExcluirMedicoActionPerformed(evt);
@@ -65,7 +67,7 @@ public class PanelMedicos extends javax.swing.JPanel {
         buttonExcluirMedico.setBounds(700, 294, 70, 60);
 
         buttonAlterarMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/editar.png"))); // NOI18N
-        buttonAlterarMedico.setToolTipText("Editar especialidade selecionada");
+        buttonAlterarMedico.setToolTipText("Editar médico selecionado");
         buttonAlterarMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAlterarMedicoActionPerformed(evt);
@@ -75,7 +77,7 @@ public class PanelMedicos extends javax.swing.JPanel {
         buttonAlterarMedico.setBounds(780, 294, 70, 60);
 
         buttonAdicionarMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/mais.png"))); // NOI18N
-        buttonAdicionarMedico.setToolTipText("Adicionar especialidades");
+        buttonAdicionarMedico.setToolTipText("Adicionar médicos");
         buttonAdicionarMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAdicionarMedicoActionPerformed(evt);
@@ -110,25 +112,49 @@ public class PanelMedicos extends javax.swing.JPanel {
             alterar();
         } else {
             JOptionPane.showMessageDialog(this,
-                "Por favor, selecione uma especialidade para alterar.",
-                "Especialidade",
+                "Por favor, selecione um médico para alterar.",
+                "Médico",
                 JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_buttonAlterarMedicoActionPerformed
 
     private void buttonAdicionarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarMedicoActionPerformed
-
-        
+       
+        DialogMedico dialogMedico = new DialogMedico(
+                null, 
+                true, 
+                TipoOperacao.ADICIONAR,
+                null);
+        dialogMedico.setVisible(true);
+        criarTabelaMedicos();
     }//GEN-LAST:event_buttonAdicionarMedicoActionPerformed
 
     private void alterar() {
         
+        Medico medico = MedicoDAO.getMedico(getCodigo());
+        DialogMedico dialogMedico = new DialogMedico(
+                null,
+                true,
+                TipoOperacao.ALTERAR,
+                medico);
+        dialogMedico.setVisible(true);
+        criarTabelaMedicos();
         
     }
 
     private void excluir() {
         
+        int resposta = JOptionPane.showConfirmDialog(this,
+                "Você confirma a exclusão do médico selecionado?",
+                "Médico",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
         
+        if (resposta == 0) {
+            
+            MedicoDAO.excluir(getCodigo());
+            criarTabelaMedicos();
+        }
     }
     
     private Integer getCodigo() {
@@ -150,8 +176,8 @@ public class PanelMedicos extends javax.swing.JPanel {
         tabelaMedico.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         
         tabelaMedico.getColumnModel().getColumn(0).setPreferredWidth(100);
-        tabelaMedico.getColumnModel().getColumn(0).setPreferredWidth(100);
-        tabelaMedico.getColumnModel().getColumn(0).setPreferredWidth(450);
+        tabelaMedico.getColumnModel().getColumn(1).setPreferredWidth(100);
+        tabelaMedico.getColumnModel().getColumn(2).setPreferredWidth(450);
         
         
         // bloquear movimentação das colunas

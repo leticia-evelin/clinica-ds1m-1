@@ -20,15 +20,20 @@ public class MedicoDAO {
     private static final String ARQUIVO = "C:\\Users\\22282118\\projeto-java\\medico.txt";
     private static final Path PATH = Paths.get(ARQUIVO);
     
-    public MedicoDAO(Medico medico) {
-        this.medico.add(medico);
-    }
-    
     public MedicoDAO() {
     
-}  
+    }  
+    
+    public MedicoDAO(Medico medico) {
+        this.medicos.add(medico);          
+    }
+    
+    public static ArrayList<Medico> listarTodos() {
+        return medicos;
+    }
+
     public static void gravar(Medico medico) {
-        medico.add(medico);
+        medicos.add(medico);
         
         // Gravar o medico no arquivo medico.txt
         
@@ -49,6 +54,7 @@ public class MedicoDAO {
                    "Erro ao gravar",
                    JOptionPane.ERROR_MESSAGE);
         }
+        
     }
     
     public static boolean excluir (Integer codigo) {
@@ -61,6 +67,24 @@ public class MedicoDAO {
        return false;
     }
     
+     public static void editar(Medico medico) {
+        for (Medico m : medicos) {
+            if (m.getCodigo().equals(medico.getCodigo())) {
+                medicos.set(medicos.indexOf(m), medico);
+                break;
+            }
+        }
+         atualizar(medico);
+     }
+    
+    public static Medico getMedico(Integer codigo) {
+       for(Medico m : medicos) {
+           if(m.getCodigo().equals(codigo)) {
+               return m;
+           }
+       }
+        return null;
+   }
     
     public static void atualizar(Medico medico){
         for(Medico m : medicos) {
@@ -71,9 +95,9 @@ public class MedicoDAO {
         }
     }
     
-    public static ArrayList<Medico> listarTodos() {
-       return medicos;
-    }
+//    public static ArrayList<Medico> listarTodos() {
+//       return medicos;
+//    }
     
     public static void getListaDeMedicos() {
          try {
@@ -118,7 +142,7 @@ public class MedicoDAO {
             
         }
         
-        String[] titulos = {"Códigos", "CRM", "Nome dos(as) Médicos(as)"};
+        String[] titulos = {"Códigos", "CRM", "Nome do Médico"};
         
         DefaultTableModel tableModel = new DefaultTableModel(dados, titulos);
         

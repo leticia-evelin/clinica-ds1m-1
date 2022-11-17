@@ -65,7 +65,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/br/senai/sp/jandira/imagens/delete32-2.png"/>
         </Property>
-        <Property name="toolTipText" type="java.lang.String" value="Excluir especialidade selecionada"/>
+        <Property name="toolTipText" type="java.lang.String" value="Excluir m&#xe9;dico selecionado"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonExcluirMedicoActionPerformed"/>
@@ -81,7 +81,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/br/senai/sp/jandira/imagens/editar.png"/>
         </Property>
-        <Property name="toolTipText" type="java.lang.String" value="Editar especialidade selecionada"/>
+        <Property name="toolTipText" type="java.lang.String" value="Editar m&#xe9;dico selecionado"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAlterarMedicoActionPerformed"/>
@@ -97,7 +97,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/br/senai/sp/jandira/imagens/mais.png"/>
         </Property>
-        <Property name="toolTipText" type="java.lang.String" value="Adicionar especialidades"/>
+        <Property name="toolTipText" type="java.lang.String" value="Adicionar m&#xe9;dicos"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAdicionarMedicoActionPerformed"/>

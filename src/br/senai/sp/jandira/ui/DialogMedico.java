@@ -16,7 +16,10 @@ public class DialogMedico extends javax.swing.JDialog {
     private TipoOperacao tipoOperacao;
     private Medico medico;
    
-    public DialogMedico(java.awt.Frame parent, boolean modal) {
+    public DialogMedico(java.awt.Frame parent,
+            boolean modal,
+            TipoOperacao tipoOperacao,
+            Medico medico) {
         super(parent, modal);
         initComponents();
         this.tipoOperacao = tipoOperacao;

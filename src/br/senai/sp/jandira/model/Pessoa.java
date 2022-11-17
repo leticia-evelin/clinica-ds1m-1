@@ -4,21 +4,14 @@ import java.time.LocalDate;
 
 public class Pessoa {
     
-    private static int contador = 100;
-    Integer codigo;
     private String nome;
     private String email;
     private String telefone;
     private LocalDate dataNascimento;
 
-    
-    public Integer getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
-    }
+   // public void setCodigo(Integer codigo) {
+        //this.codigo = codigo;
+    //}
     
     public String getNome() {
         return nome;
