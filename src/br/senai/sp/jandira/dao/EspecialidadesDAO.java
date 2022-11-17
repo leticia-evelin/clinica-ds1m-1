@@ -4,6 +4,7 @@ package br.senai.sp.jandira.dao;
 import br.senai.sp.jandira.model.Especialidade;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,7 +19,9 @@ public class EspecialidadesDAO { // Simular nosso banco de dados
     private Especialidade especialidade;
     private static ArrayList<Especialidade> especialidades = new ArrayList<>();
     private static final String ARQUIVO = "C:\\Users\\22282118\\projeto-java\\especialidade.txt";
+    private static final String ARQUIVO_TEMP = "C:\\Users\\22282118\\projeto-java\\especialidade_temp.txt";
     private static final Path PATH = Paths.get(ARQUIVO);
+    private static final Path PATH_TEMP = Paths.get(ARQUIVO_TEMP);
     
    public EspecialidadesDAO(Especialidade especialidade) {
        this.especialidades.add(especialidade);
@@ -83,6 +86,46 @@ public class EspecialidadesDAO { // Simular nosso banco de dados
           
       }
   }
+   
+   private static void atualizarArquivo() {
+       File arquivoAtual = new File(ARQUIVO);
+       File arquivoTemp = new File(ARQUIVO_TEMP);
+       
+       try {
+            
+           // Criar o arquivo temporário
+           arquivoTemp.createNewFile();
+           
+           // Abrir o arquivo temporário para escrita
+           BufferedWriter bwTemp = Files.newBufferedWriter(
+                   PATH_TEMP,
+                   StandardOpenOption.APPEND,
+                   StandardOpenOption.WRITE);
+           
+           // Iterar a lista para adicionar os planos no arquivo temporário
+           for(Especialidade e : especialidades) {
+               bwTemp.write(e.getEspecialidadeSeparadoPorPontoEVirgula());
+               bwTemp.newLine();
+           }
+           
+           // Fechar o arquivo temporário
+           bwTemp.close();
+           
+           // Excluir o arquivo atual - plano_de_saude.txt
+           arquivoAtual.delete();
+           
+           // Renomear o arquivo temporário
+           arquivoTemp.renameTo(arquivoAtual);
+           
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(
+           null, 
+           "Ocorreu um erro ao  criar o arquivo!", 
+           "Erro", 
+           JOptionPane.ERROR_MESSAGE);
+        } 
+   }
+   
    
    public static ArrayList<Especialidade> listarTodos() {
        return especialidades;

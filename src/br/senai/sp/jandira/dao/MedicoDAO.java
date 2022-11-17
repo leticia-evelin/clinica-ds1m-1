@@ -3,6 +3,7 @@ package br.senai.sp.jandira.dao;
 import br.senai.sp.jandira.model.Medico;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,7 +19,9 @@ public class MedicoDAO {
     private Medico medico;
     private static ArrayList<Medico> medicos = new ArrayList<>();
     private static final String ARQUIVO = "C:\\Users\\22282118\\projeto-java\\medico.txt";
+    private static final String ARQUIVO_TEMP = "C\\Users\\22282118\\projeto-java\\medico_temp.txt";
     private static final Path PATH = Paths.get(ARQUIVO);
+    private static final Path PATH_TEMP = Paths.get(ARQUIVO);
     
     public MedicoDAO() {
     
@@ -26,10 +29,6 @@ public class MedicoDAO {
     
     public MedicoDAO(Medico medico) {
         this.medicos.add(medico);          
-    }
-    
-    public static ArrayList<Medico> listarTodos() {
-        return medicos;
     }
 
     public static void gravar(Medico medico) {
@@ -95,10 +94,50 @@ public class MedicoDAO {
         }
     }
     
-//    public static ArrayList<Medico> listarTodos() {
-//       return medicos;
-//    }
-    
+
+    private static void atualizarArquivo() {
+        File arquivoAtual = new File(ARQUIVO);
+        File arquivoTemp = new File(ARQUIVO_TEMP);
+        
+        try {
+            
+           // Criar o arquivo temporário
+           arquivoTemp.createNewFile();
+           
+           // Abrir o arquivo temporário para escrita
+           BufferedWriter bwTemp = Files.newBufferedWriter(
+                   PATH_TEMP,
+                   StandardOpenOption.APPEND,
+                   StandardOpenOption.WRITE);
+           
+           // Iterar a lista para adicionar os planos no arquivo temporário
+           for(Medico m : medicos) {
+               bwTemp.write(m.getMedicoSeparadoPorPontoEVirgula());
+               bwTemp.newLine();
+           }
+           
+           // Fechar o arquivo temporário
+           bwTemp.close();
+           
+           // Excluir o arquivo atual - medico.txt
+           arquivoAtual.delete();
+           
+           // Renomear o arquivo temporário
+           arquivoTemp.renameTo(arquivoAtual);
+           
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(
+           null, 
+           "Ocorreu um erro ao  criar o arquivo!", 
+           "Erro", 
+           JOptionPane.ERROR_MESSAGE);
+        }    
+    }
+       
+     public static ArrayList<Medico> listarTodos() {
+        return medicos;
+    }
+   
     public static void getListaDeMedicos() {
          try {
              BufferedReader br = Files.newBufferedReader(PATH);
@@ -110,7 +149,7 @@ public class MedicoDAO {
             while(linha != null && !linha.isEmpty()) {
                 String[] linhaVetor = linha.split(";");
                 Medico novoMedico = new Medico(
-                        Integer.valueOf(linhaVetor[0]),
+                       Integer.valueOf(linhaVetor[0]),
                        linhaVetor[1],
                        linhaVetor[2]);
                 medicos.add(novoMedico);
@@ -121,16 +160,15 @@ public class MedicoDAO {
             
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(
-                    null, "Ocorreu um erro ao abrir o arquivo",
-                    "Erro de leitura",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-        
+           null, "Ocorreu um erro ao abrir o arquivo",
+           "Erro de leitura",
+           JOptionPane.ERROR_MESSAGE);
+        }     
     }
     
     public static DefaultTableModel getTableModel() {
         // Receberá as especialidades
-        Object[][] dados = new Object[medicos.size()][3];
+        Object[][] dados = new Object[medicos.size()][4];
         
         int i = 0;
         
@@ -138,15 +176,14 @@ public class MedicoDAO {
             dados[i][0] = m.getCodigo();
             dados[i][1] = m.getCrm();
             dados[i][2] = m.getNome();
-            i++;
-            
+            dados[i][3] = m.getTelefone();
+            i++;    
         }
         
-        String[] titulos = {"Códigos", "CRM", "Nome do Médico"};
+        String[] titulos = {"Códigos", "CRM", "Nome do Médico", "Telefone"};
         
         DefaultTableModel tableModel = new DefaultTableModel(dados, titulos);
         
         return tableModel;
-    }
-    
+    }   
 }

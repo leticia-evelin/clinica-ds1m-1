@@ -36,15 +36,7 @@ public class Medico extends Pessoa{
 
     public void setEspecialidades(ArrayList<Especialidade> especialidades) {
 	this.especialidades = especialidades;
-    }
-
-   
-    public String getMedicoSeparadoPorPontoEVirgula() {
-            String medicoStr = this.codigo + ";" + this.crm + ";" + this.getNome() + 
-                 ";" + super.getTelefone() + ";" + super.getTelefone() + ";" +
-                  super.getEmail() + ";" + super.getDataNascimento();
-            return medicoStr;
-    }        
+    }       
 
     public static int getContador() {
         return contador;
@@ -67,8 +59,14 @@ public class Medico extends Pessoa{
     private void atualizarCodigo() {
         contador++;
         this.codigo = contador;
-
     }
+    
+    public String getMedicoSeparadoPorPontoEVirgula() {
+        String medicoStr = this.codigo + ";" + this.crm + ";" + this.getNome() + 
+        ";" + super.getTelefone() + ";" + super.getTelefone() + ";" +
+        super.getEmail() + ";" + super.getDataNascimento();
+        return medicoStr;
+    } 
     
 
 }

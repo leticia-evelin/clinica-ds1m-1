@@ -139,7 +139,6 @@ public class PanelMedicos extends javax.swing.JPanel {
                 medico);
         dialogMedico.setVisible(true);
         criarTabelaMedicos();
-        
     }
 
     private void excluir() {
@@ -178,6 +177,7 @@ public class PanelMedicos extends javax.swing.JPanel {
         tabelaMedico.getColumnModel().getColumn(0).setPreferredWidth(100);
         tabelaMedico.getColumnModel().getColumn(1).setPreferredWidth(100);
         tabelaMedico.getColumnModel().getColumn(2).setPreferredWidth(450);
+        tabelaMedico.getColumnModel().getColumn(3).setPreferredWidth(257);
         
         
         // bloquear movimentação das colunas

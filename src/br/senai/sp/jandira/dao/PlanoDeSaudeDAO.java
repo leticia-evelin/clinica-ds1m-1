@@ -131,13 +131,11 @@ public class PlanoDeSaudeDAO { // Simular nosso banco de dados
            
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(
-                    null, 
-                    "Ocorreu um eerro ao  criar o arquivo!", 
-                    "Erro", 
-                    JOptionPane.ERROR_MESSAGE);
+           null, 
+           "Ocorreu um erro ao  criar o arquivo!", 
+           "Erro", 
+           JOptionPane.ERROR_MESSAGE);
         }
-        
-        
     }
 
     public static ArrayList<PlanoDeSaude> listarTodos() {

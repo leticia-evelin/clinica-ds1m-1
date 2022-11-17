@@ -5,10 +5,14 @@
 package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.MedicoDAO;
+import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.Medico;
 import br.senai.sp.jandira.model.TipoOperacao;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.event.TableModelEvent;
 
 
 public class DialogMedico extends javax.swing.JDialog {
@@ -21,14 +25,15 @@ public class DialogMedico extends javax.swing.JDialog {
             TipoOperacao tipoOperacao,
             Medico medico) {
         super(parent, modal);
-        initComponents();
+        initComponents(); 
+       
+       
         this.tipoOperacao = tipoOperacao;
         this.medico = medico;
         
         // Preencher os campos, se o tipo de operação for ALTERAR
         if(tipoOperacao == TipoOperacao.ALTERAR) {
             preencherFormulario();
-        
         }
     }
 
@@ -41,12 +46,17 @@ public class DialogMedico extends javax.swing.JDialog {
         textTelefone.setText(medico.getTelefone());
         textEmail.setText(medico.getEmail());
         textDataNascimento.setText(medico.getDataNascimento().toString());
+        
     }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         labelTitulo = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -66,13 +76,39 @@ public class DialogMedico extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         textDataNascimento = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPaneListaDeEspecialidades = new javax.swing.JTextPane();
         jLabel9 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextPaneEspecialidadesDoMedico = new javax.swing.JTextPane();
         buttonVoltarEspecialidades = new javax.swing.JButton();
         buttonMoverEspecialidades = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jListEspecialidadesDoMedico = new javax.swing.JList<>();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -181,21 +217,11 @@ public class DialogMedico extends javax.swing.JDialog {
 
         jLabel8.setText("Lista de especialidades:");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(20, 180, 130, 16);
-
-        jScrollPane1.setViewportView(jTextPaneListaDeEspecialidades);
-
-        jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(20, 210, 140, 130);
+        jLabel8.setBounds(20, 180, 160, 16);
 
         jLabel9.setText("Especialidades do médico:");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(260, 180, 150, 16);
-
-        jScrollPane3.setViewportView(jTextPaneEspecialidadesDoMedico);
-
-        jPanel1.add(jScrollPane3);
-        jScrollPane3.setBounds(260, 210, 140, 130);
+        jLabel9.setBounds(260, 180, 190, 16);
 
         buttonVoltarEspecialidades.setBackground(new java.awt.Color(255, 0, 51));
         buttonVoltarEspecialidades.setFont(new java.awt.Font("Segoe UI Semibold", 1, 28)); // NOI18N
@@ -223,6 +249,32 @@ public class DialogMedico extends javax.swing.JDialog {
         });
         jPanel1.add(buttonMoverEspecialidades);
         buttonMoverEspecialidades.setBounds(185, 225, 40, 40);
+
+        jListEspecialidadesDoMedico.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane5.setViewportView(jListEspecialidadesDoMedico);
+
+        jPanel1.add(jScrollPane5);
+        jScrollPane5.setBounds(270, 200, 150, 146);
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jTable3);
+
+        jPanel1.add(jScrollPane4);
+        jScrollPane4.setBounds(20, 200, 140, 150);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(10, 110, 620, 360);
@@ -273,7 +325,7 @@ public class DialogMedico extends javax.swing.JDialog {
         medico.setNome(textNomeDoMedico.getText());
         medico.setTelefone(textTelefone.getText());
         medico.setEmail(textEmail.getText());
-        medico.setDataNascimento(LocalDate.MIN);
+        medico.setDataNascimento(LocalDate.MAX);
         
         if(validarCadastro()) {
             MedicoDAO.atualizar(medico);
@@ -284,8 +336,7 @@ public class DialogMedico extends javax.swing.JDialog {
                     "Médico",
                     JOptionPane.INFORMATION_MESSAGE);
             dispose();
-        }
-        
+        }  
     }
     
     private void gravar() {
@@ -293,7 +344,8 @@ public class DialogMedico extends javax.swing.JDialog {
         medico.setCrm(textCrm.getText());
         medico.setNome(textNomeDoMedico.getText());
         medico.setTelefone(textTelefone.getText());
-        medico.setDataNascimento(LocalDate.MIN);
+        //medico.setDataNascimento(LocalDate.of(ERROR, WIDTH, ABORT));
+        medico.setDataNascimento(LocalDate.MAX);
         
         
         if(validarCadastro()) {
@@ -306,7 +358,6 @@ public class DialogMedico extends javax.swing.JDialog {
             
             dispose();
         }
-        
     }
     
     private boolean validarCadastro() {
@@ -357,18 +408,16 @@ public class DialogMedico extends javax.swing.JDialog {
         
         if(textDataNascimento.getText().isEmpty()) {
             JOptionPane.showMessageDialog(
-                    this,
-                    "Por favor, preencha a data de nascimento!",
-                    "Médico",
-                    JOptionPane.ERROR_MESSAGE);
-            
+           this,
+           "Por favor, preencha a data de nascimento!",
+           "Médico",
+           JOptionPane.ERROR_MESSAGE);
             textDataNascimento.requestFocus();
             return false;
         }
         
-         return true;
+        return true;
     }
-        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancelar;
@@ -384,12 +433,16 @@ public class DialogMedico extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JList<String> jListEspecialidadesDoMedico;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextPane jTextPaneEspecialidadesDoMedico;
-    private javax.swing.JTextPane jTextPaneListaDeEspecialidades;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JTextField textCodigo;
     private javax.swing.JTextField textCrm;
