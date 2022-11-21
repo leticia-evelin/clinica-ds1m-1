@@ -66,16 +66,6 @@ public class MedicoDAO {
        return false;
     }
     
-     public static void editar(Medico medico) {
-        for (Medico m : medicos) {
-            if (m.getCodigo().equals(medico.getCodigo())) {
-                medicos.set(medicos.indexOf(m), medico);
-                break;
-            }
-        }
-         atualizar(medico);
-     }
-    
     public static Medico getMedico(Integer codigo) {
        for(Medico m : medicos) {
            if(m.getCodigo().equals(codigo)) {

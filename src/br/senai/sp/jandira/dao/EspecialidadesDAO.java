@@ -50,42 +50,40 @@ public class EspecialidadesDAO { // Simular nosso banco de dados
             
         } catch (IOException ex) {
            JOptionPane.showMessageDialog(
-                   null,
-                   "Ocorreu um erro ao gravar.\n\nEntre em contato com o suporte.",
-                   "Erro ao gravar",
-                   JOptionPane.ERROR_MESSAGE);
+           null,
+           "Ocorreu um erro ao gravar.\n\nEntre em contato com o suporte.",
+           "Erro ao gravar",
+           JOptionPane.ERROR_MESSAGE);
         }
-   
-   }
+    }
    
    public static boolean excluir (Integer codigo) {
        for(Especialidade e : especialidades) {
            if(e.getCodigo().equals(codigo)) {
                especialidades.remove(e);
                return true;
-           }
-       }
+            }
+        }
        return false;
-   }
+    }
    
    public static Especialidade getEspecialidade(Integer codigo) {
        for(Especialidade e : especialidades) {
            if(e.getCodigo().equals(codigo)) {
                return e;
-           }
-       }
+            }
+        }
         return null;
-   }
+    }
    
    public static void atualizar(Especialidade especialidade) {
       for(Especialidade e : especialidades) {
           if(e.getCodigo().equals(especialidade.getCodigo())) {
               especialidades.set(especialidades.indexOf(e), especialidade);
               break;
-          }
-          
-      }
-  }
+            } 
+        }
+    }
    
    private static void atualizarArquivo() {
        File arquivoAtual = new File(ARQUIVO);
@@ -106,7 +104,7 @@ public class EspecialidadesDAO { // Simular nosso banco de dados
            for(Especialidade e : especialidades) {
                bwTemp.write(e.getEspecialidadeSeparadoPorPontoEVirgula());
                bwTemp.newLine();
-           }
+            }
            
            // Fechar o arquivo temporário
            bwTemp.close();
@@ -124,12 +122,12 @@ public class EspecialidadesDAO { // Simular nosso banco de dados
            "Erro", 
            JOptionPane.ERROR_MESSAGE);
         } 
-   }
+    }
    
    
    public static ArrayList<Especialidade> listarTodos() {
        return especialidades;
-   }
+    }
    
    
    
@@ -159,9 +157,9 @@ public class EspecialidadesDAO { // Simular nosso banco de dados
             
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(
-                    null, "Ocorreu um erro ao abrir o arquivo",
-                    "Erro de leitura",
-                    JOptionPane.ERROR_MESSAGE);
+            null, "Ocorreu um erro ao abrir o arquivo",
+            "Erro de leitura",
+            JOptionPane.ERROR_MESSAGE);
         }
         
        
@@ -192,8 +190,7 @@ public class EspecialidadesDAO { // Simular nosso banco de dados
             dados[i][0] = e.getCodigo();
             dados[i][1] = e.getNome();
             dados[i][2] = e.getDescricao();
-            i++;
-            
+            i++;   
         }
         
         String[] titulos = {"Códigos", "Especialidade", "Descrição da especialidade"};
