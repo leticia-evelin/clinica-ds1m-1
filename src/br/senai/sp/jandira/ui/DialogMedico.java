@@ -322,9 +322,9 @@ public class DialogMedico extends javax.swing.JDialog {
        // java.util.List<String> jListTodos = listaTodasEspecialidadesModel.getSelectedValuesList();
         //java.util.List<String> todosLista = listaTodasEspecialidadesModel.
 //        
- //     for(ListDataListener e : jListTodos){
-//          especialidadeSelecionadasMedico(e);
-//      }
+      for(String e : jListTodos){
+          especialidadeSelecionadasMedico(e);
+      }
       for(Especialidade e : especialidadeSelecionadasMedico){
           if(jListTodos.equals(e.getNome())){
               especialidadeSelecionadasMedico.add(e);
