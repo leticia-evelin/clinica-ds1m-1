@@ -21,7 +21,7 @@ public class MedicoDAO {
     private Medico medico;
     private static ArrayList<Medico> medicos = new ArrayList<>();
     private static final String ARQUIVO = "C:\\Users\\22282118\\projeto-java\\medico.txt";
-    private static final String ARQUIVO_TEMP = "C\\Users\\22282118\\projeto-java\\medico_temp.txt";
+    private static final String ARQUIVO_TEMP = "C:\\Users\\22282118\\projeto-java\\medico_temp.txt";
     private static final Path PATH = Paths.get(ARQUIVO);
     private static final Path PATH_TEMP = Paths.get(ARQUIVO);
      public static BufferedWriter bw;
@@ -41,9 +41,9 @@ public class MedicoDAO {
         
         try {
             BufferedWriter bw = Files.newBufferedWriter(
-                    PATH,
-                    StandardOpenOption.APPEND,
-                    StandardOpenOption.WRITE);
+           PATH,
+           StandardOpenOption.APPEND,
+           StandardOpenOption.WRITE);
             
             bw.write(medico.getMedicoSeparadoPorPontoEVirgula());
             bw.newLine();
@@ -51,10 +51,10 @@ public class MedicoDAO {
             
         } catch (IOException ex) {
            JOptionPane.showMessageDialog(
-                   null,
-                   "Ocorreu um erro ao gravar.\n\nEntre em contato com o suporte.",
-                   "ERRO",
-                   JOptionPane.ERROR_MESSAGE);
+           null,
+           "Ocorreu um erro ao gravar.\n\nEntre em contato com o suporte.",
+           "ERRO",
+           JOptionPane.ERROR_MESSAGE);
         }
         medicos.add(medico);
     }
@@ -74,10 +74,10 @@ public class MedicoDAO {
        for(Medico m : medicos) {
            if(m.getCodigo().equals(codigo)) {
                return m;
-           }
-       }
+            }
+        }
         return null;
-   }
+    }
     
     public static void atualizar(Medico medico){
         for(Medico m : medicos) {
@@ -144,15 +144,24 @@ public class MedicoDAO {
             
            while(linha != null && !linha.isEmpty()) {
                String[] linhaVetor = linha.split(";");
+               System.out.println("0-" + linhaVetor[0]);
+               System.out.println("1-" + linhaVetor[1]);
+               System.out.println("2-" + linhaVetor[2]);
+               System.out.println("3-" + linhaVetor[3]);
+               System.out.println("4-" + linhaVetor[4]);
+               System.out.println("5-" + linhaVetor[5]);
                
                int i = 0;
                 ArrayList<Especialidade> especialidades = new ArrayList<>();
+                String[] especialidadesVetor = linhaVetor[6].split("#");
+                System.out.println("6-" + especialidadesVetor[0]);
+                System.out.println("-------------------------------------------------------");
                 while(linhaVetor.length > i +6){
-                   especialidades.add(EspecialidadesDAO.getEspecialidade(Integer.valueOf(linhaVetor[6+i])));
+                   //especialidades.add(EspecialidadesDAO.getEspecialidade(Integer.valueOf(linhaVetor[6+i])));
                    i++;
                 }
                 
-                String[] data = linhaVetor[5].split("/");
+                String[] data = linhaVetor[4].split("/");
                 int ano = Integer.parseInt(data[2]);
                 int mes = Integer.parseInt(data[1]);
                 int dia = Integer.parseInt(data[0]);
@@ -166,8 +175,8 @@ public class MedicoDAO {
                 linhaVetor[4],
                 dataNascimento,
                 especialidades);
-                 medicos.add(novoMedico);
-                 linha = br.readLine();
+                medicos.add(novoMedico);
+                linha = br.readLine();
             }
             
             br.close();

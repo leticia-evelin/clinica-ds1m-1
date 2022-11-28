@@ -97,10 +97,10 @@ public class PanelMedicos extends javax.swing.JPanel {
             excluir();
         } else {
             JOptionPane.showMessageDialog(
-                this,
-                "Por favor, selecione o médico que você deseja excluir.",
-                "Médico",
-                JOptionPane.ERROR_MESSAGE);
+           this,
+           "Por favor, selecione o médico que você deseja excluir.",
+           "Médico",
+           JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_buttonExcluirMedicoActionPerformed
 
@@ -112,19 +112,19 @@ public class PanelMedicos extends javax.swing.JPanel {
             alterar();
         } else {
             JOptionPane.showMessageDialog(this,
-                "Por favor, selecione um médico para alterar.",
-                "Médico",
-                JOptionPane.ERROR_MESSAGE);
+            "Por favor, selecione um médico para alterar.",
+            "Médico",
+            JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_buttonAlterarMedicoActionPerformed
 
     private void buttonAdicionarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarMedicoActionPerformed
        
         DialogMedico dialogMedico = new DialogMedico(
-                null, 
-                true, 
-                TipoOperacao.ADICIONAR,
-                null);
+           null, 
+           true, 
+           TipoOperacao.ADICIONAR,
+           null);
         dialogMedico.setVisible(true);
         criarTabelaMedicos();
     }//GEN-LAST:event_buttonAdicionarMedicoActionPerformed
@@ -133,10 +133,10 @@ public class PanelMedicos extends javax.swing.JPanel {
         
         Medico medico = MedicoDAO.getMedico(getCodigo());
         DialogMedico dialogMedico = new DialogMedico(
-                null,
-                true,
-                TipoOperacao.ALTERAR,
-                medico);
+           null,
+           true,
+           TipoOperacao.ALTERAR,
+            medico);
         dialogMedico.setVisible(true);
         criarTabelaMedicos();
     }
@@ -144,10 +144,10 @@ public class PanelMedicos extends javax.swing.JPanel {
     private void excluir() {
         
         int resposta = JOptionPane.showConfirmDialog(this,
-                "Você confirma a exclusão do médico selecionado?",
-                "Médico",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE);
+        "Você confirma a exclusão do médico selecionado?",
+        "Médico",
+        JOptionPane.YES_NO_OPTION,
+        JOptionPane.QUESTION_MESSAGE);
         
         if (resposta == 0) {
             

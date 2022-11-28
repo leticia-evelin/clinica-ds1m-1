@@ -2,7 +2,6 @@ package br.senai.sp.jandira.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 
 
@@ -24,11 +23,10 @@ public class Medico extends Pessoa{
     public Medico(int codigo) {
         contador++;
         this.codigo = contador;
-    
     }
 
     public Medico(Integer valueOf, String string, String string0, String string1, String string2, LocalDate dataNascimento, ArrayList<Especialidade> especialidades) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
 
     
@@ -87,5 +85,4 @@ public class Medico extends Pessoa{
         super.getEmail() + ";" + super.getDataNascimento();
         return medicoStr;
     } 
-
 }

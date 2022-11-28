@@ -22,13 +22,13 @@ public class DialogMedico extends javax.swing.JDialog {
     private Medico medico;
     
     //lista
-    private final DefaultListModel<String> listaTodasEspecialidadesModel = new DefaultListModel<>();    
-    private final ArrayList<String> especialidades = new ArrayList<>();    
+    private DefaultListModel<String> listaTodasEspecialidadesModel = new DefaultListModel<>();    
+    //private final ArrayList<String> especialidades = new ArrayList<>();    
     private final ArrayList<Especialidade> especialidadesSelecionadas = EspecialidadesDAO.listarTodos();
    
-    private final DefaultListModel<String> listaEspecialidadesMedico = new DefaultListModel<>();
+    private DefaultListModel<String> listaEspecialidadesMedico = new DefaultListModel<>();
     private ArrayList<String> selecionados = new ArrayList<>();
-    private ArrayList<Especialidade> especialidadeSelecionadasMedico = new ArrayList<>();
+    //private ArrayList<Especialidade> especialidadeSelecionadasMedico = new ArrayList<>();
    
     //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     
@@ -61,6 +61,16 @@ public class DialogMedico extends javax.swing.JDialog {
         textDataNascimento.setText(medico.getDataNascimento().toString());
         
     }
+    
+    //private void carregarEspecialidades() {
+
+        //for (Especialidade percorrer : EspecialidadesDAO.listarTodos()) {
+            //listaTodasEspecialidadesModel.addElement(percorrer.getNome());
+        //}
+
+        //especialidadeSelecionadasMedico.setModel(listaTodasEspecialidadesModel);
+
+    //}
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -318,22 +328,17 @@ public class DialogMedico extends javax.swing.JDialog {
     }//GEN-LAST:event_textEmailActionPerformed
 
     private void buttonAdicionarEspecialidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarEspecialidadesActionPerformed
-          java.util.List<String> jListTodos = listaTodasEspecialidadesModel.getSelectedValuesList();
-       // java.util.List<String> jListTodos = listaTodasEspecialidadesModel.getSelectedValuesList();
-        //java.util.List<String> todosLista = listaTodasEspecialidadesModel.
-//        
-      for(String e : jListTodos){
-          especialidadeSelecionadasMedico(e);
-      }
-      for(Especialidade e : especialidadeSelecionadasMedico){
-          if(jListTodos.equals(e.getNome())){
-              especialidadeSelecionadasMedico.add(e);
-            }
-        }
-     
-      especialidadeSelecionadasMedico.clear();
-      especialidadeSelecionadasMedico.addAll(especialidadeSelecionadasMedico);
-      listaTodasEspecialidadesModel.setModel(especialidadeSelecionadasMedico);
+      //List<String> jListTodos = listaTodasEspecialidadesModel.get  
+ 
+//      java.util.List<String> jListTodos = listaTodasEspecialidadesModel.getSelectedValuesList();
+//              
+//      for(String e : jListTodos){
+//          selecionados.add(e);
+//        }
+//      
+//     selecionados.clear();
+//     listaEspecialidadesMedico.addAll(selecionados);
+//     jListSelecionados.setModel(listaEspecialidadesMedico);
     }//GEN-LAST:event_buttonAdicionarEspecialidadesActionPerformed
 
     private void buttonVoltarEspecialidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVoltarEspecialidadesActionPerformed
@@ -352,30 +357,32 @@ public class DialogMedico extends javax.swing.JDialog {
             MedicoDAO.atualizar(medico);
                     
             JOptionPane.showMessageDialog(
-                    null,
-                    "Médico atualizado com sucesso",
-                    "Médico",
-                    JOptionPane.INFORMATION_MESSAGE);
+            null,
+            "Médico atualizado com sucesso",
+            "Médico",
+            JOptionPane.INFORMATION_MESSAGE);
             dispose();
         }  
     }
     
     private void gravar() {
+        
         Medico medico = new Medico();
         medico.setCrm(textCrm.getText());
         medico.setNome(textNomeDoMedico.getText());
         medico.setTelefone(textTelefone.getText());
-        //medico.setDataNascimento(dataFormatoCerto().getText());
-        medico.setEspecialidades(especialidadeSelecionadasMedico);
+        medico.setEmail(textEmail.getText());
+        //medico.setDataNascimento();
+        medico.setEspecialidades(especialidadesSelecionadas);
         
         
         if(validarCadastro()) {
             MedicoDAO.gravar(medico);
             JOptionPane.showMessageDialog(
-                    this,
-                    "Médico atualizado com sucesso!",
-                    "Médico",
-                    JOptionPane.INFORMATION_MESSAGE);
+            this,
+            "Médico atualizado com sucesso!",
+            "Médico",
+            JOptionPane.INFORMATION_MESSAGE);
             
             dispose();
         }
@@ -385,10 +392,10 @@ public class DialogMedico extends javax.swing.JDialog {
         
         if(textCrm.getText().isEmpty()) {
             JOptionPane.showMessageDialog(
-                    this,
-                    "Por favor, preencha o CRM!",
-                    "Médico",
-                    JOptionPane.ERROR_MESSAGE);
+            this,
+            "Por favor, preencha o CRM!",
+            "Médico",
+            JOptionPane.ERROR_MESSAGE);
             
             textCrm.requestFocus();
             return false;
@@ -396,10 +403,10 @@ public class DialogMedico extends javax.swing.JDialog {
         
         if(textNomeDoMedico.getText().isEmpty()) {
             JOptionPane.showMessageDialog(
-                    this,
-                    "Por favor, preencha o nome do(a) médico(a)!",
-                    "Médico",
-                    JOptionPane.ERROR_MESSAGE);
+            this,
+            "Por favor, preencha o nome do(a) médico(a)!",
+            "Médico",
+            JOptionPane.ERROR_MESSAGE);
             
             textNomeDoMedico.requestFocus();
             return false;
@@ -407,10 +414,10 @@ public class DialogMedico extends javax.swing.JDialog {
         
         if(textTelefone.getText().isEmpty()) {
             JOptionPane.showMessageDialog(
-                    this,
-                    "Por favor, preencha o número do telefone!",
-                    "Médico",
-                    JOptionPane.ERROR_MESSAGE);
+            this,
+            "Por favor, preencha o número do telefone!",
+            "Médico",
+            JOptionPane.ERROR_MESSAGE);
             
             textTelefone.requestFocus();
             return false;
@@ -418,10 +425,10 @@ public class DialogMedico extends javax.swing.JDialog {
         
         if(textEmail.getText().isEmpty()) {
             JOptionPane.showMessageDialog(
-                    this,
-                    "Por favor, preencha o e-mail!",
-                    "Médico",
-                    JOptionPane.ERROR_MESSAGE);
+            this,
+            "Por favor, preencha o e-mail!",
+            "Médico",
+            JOptionPane.ERROR_MESSAGE);
             
             textEmail.requestFocus();
             return false;
@@ -439,18 +446,7 @@ public class DialogMedico extends javax.swing.JDialog {
         
         return true;
     }
-    
-    private void carregarEspecialidades() {
-
-        for (Especialidade percorrer : EspecialidadesDAO.listarTodos()) {
-            listaTodasEspecialidadesModel.addElement(percorrer.getNome());
-        }
-
-        //especialidadeSelecionadasMedico.setModel(listaTodasEspecialidadesModel);
-
-    }
-
-    
+     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdicionarEspecialidades;
     private javax.swing.JButton buttonCancelar;
@@ -484,10 +480,4 @@ public class DialogMedico extends javax.swing.JDialog {
     private javax.swing.JTextField textTelefone;
     // End of variables declaration//GEN-END:variables
 
- //private LocalDate dataFormatoCerto(){
-        //String[] data = formattedTextFieldDataNascimento.getText().split("/");
-        
-       // return LocalDate.of(Integer.parseInt(data[2]), Integer.parseInt(data[1]), Integer.parseInt(data[0]));
-        
-    //}
 }
