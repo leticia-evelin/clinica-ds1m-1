@@ -3,10 +3,11 @@ package br.senai.sp.jandira.ui;
 import br.senai.sp.jandira.dao.EspecialidadesDAO;
 import br.senai.sp.jandira.dao.MedicoDAO;
 import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
+import java.io.IOException;
 
 public class HomeFrame extends javax.swing.JFrame {
 
-    public HomeFrame() {
+    public HomeFrame() throws IOException {
         initComponents();
         PlanoDeSaudeDAO.getListaPlanosDeSaude(); // Plano de saúde
         EspecialidadesDAO.getListaEspecialidades(); // Especialidades

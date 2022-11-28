@@ -1,6 +1,9 @@
 package br.senai.sp.jandira.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.DefaultListModel;
 
 
 public class Medico extends Pessoa{
@@ -12,16 +15,23 @@ public class Medico extends Pessoa{
     private Integer codigo;
     private String crm;
     private ArrayList<Especialidade> especialidades;
-    private ArrayList<PlanoDeSaude> planos;
+    //private ArrayList<PlanoDeSaude> planos;
 
     public Medico() {
       atualizarCodigo();
     }
 
     public Medico(int codigo) {
-        this.codigo = codigo;
-        this.contador = this.codigo;
+        contador++;
+        this.codigo = contador;
+    
     }
+
+    public Medico(Integer valueOf, String string, String string0, String string1, String string2, LocalDate dataNascimento, ArrayList<Especialidade> especialidades) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    
     public String getCrm() {
       return crm;
     }
@@ -61,12 +71,21 @@ public class Medico extends Pessoa{
         this.codigo = contador;
     }
     
+     public Medico(int codigo, String crm, String nome, String telefone, String email, LocalDate dataNascimento, ArrayList especialidades) {
+        this.codigo = codigo;
+        this.crm = crm;
+        setNome(nome);
+        setTelefone(telefone);
+        setEmail(email);
+        setDataNascimento(dataNascimento);
+        this.especialidades = especialidades;
+        this.contador = this.codigo;
+    }
     public String getMedicoSeparadoPorPontoEVirgula() {
         String medicoStr = this.codigo + ";" + this.crm + ";" + this.getNome() + 
         ";" + super.getTelefone() + ";" + super.getTelefone() + ";" +
         super.getEmail() + ";" + super.getDataNascimento();
         return medicoStr;
     } 
-    
 
 }

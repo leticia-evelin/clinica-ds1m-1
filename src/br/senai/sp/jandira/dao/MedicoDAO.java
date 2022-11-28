@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.dao;
 
+import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.Medico;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -22,6 +24,7 @@ public class MedicoDAO {
     private static final String ARQUIVO_TEMP = "C\\Users\\22282118\\projeto-java\\medico_temp.txt";
     private static final Path PATH = Paths.get(ARQUIVO);
     private static final Path PATH_TEMP = Paths.get(ARQUIVO);
+     public static BufferedWriter bw;
     
     public MedicoDAO() {
     
@@ -32,7 +35,7 @@ public class MedicoDAO {
     }
 
     public static void gravar(Medico medico) {
-        medicos.add(medico);
+        
         
         // Gravar o medico no arquivo medico.txt
         
@@ -50,19 +53,20 @@ public class MedicoDAO {
            JOptionPane.showMessageDialog(
                    null,
                    "Ocorreu um erro ao gravar.\n\nEntre em contato com o suporte.",
-                   "Erro ao gravar",
+                   "ERRO",
                    JOptionPane.ERROR_MESSAGE);
         }
-        
+        medicos.add(medico);
     }
     
     public static boolean excluir (Integer codigo) {
        for(Medico m : medicos ) {
            if(m.getCodigo().equals(codigo)) {
                medicos.remove(m);
-               return true;
+               break;
             }
         }
+       atualizarArquivo();
        return false;
     }
     
@@ -81,6 +85,7 @@ public class MedicoDAO {
               medicos.set(medicos.indexOf(m), medico);
               break;
             }
+          atualizarArquivo();
         }
     }
     
@@ -128,26 +133,45 @@ public class MedicoDAO {
         return medicos;
     }
    
-    public static void getListaDeMedicos() {
+    public static void getListaDeMedicos() throws IOException {
          try {
              BufferedReader br = Files.newBufferedReader(PATH);
            
-             String linha = br.readLine();
+             String linha = "";
             
-            //linha = br.readLine();
+            linha = br.readLine();
             
-            while(linha != null && !linha.isEmpty()) {
-                String[] linhaVetor = linha.split(";");
-                Medico novoMedico = new Medico(
-                       Integer.valueOf(linhaVetor[0]),
-                       linhaVetor[1],
-                       linhaVetor[2]);
-                medicos.add(novoMedico);
-                linha = br.readLine();
+            
+           while(linha != null && !linha.isEmpty()) {
+               String[] linhaVetor = linha.split(";");
+               
+               int i = 0;
+                ArrayList<Especialidade> especialidades = new ArrayList<>();
+                while(linhaVetor.length > i +6){
+                   especialidades.add(EspecialidadesDAO.getEspecialidade(Integer.valueOf(linhaVetor[6+i])));
+                   i++;
+                }
+                
+                String[] data = linhaVetor[5].split("/");
+                int ano = Integer.parseInt(data[2]);
+                int mes = Integer.parseInt(data[1]);
+                int dia = Integer.parseInt(data[0]);
+                LocalDate dataNascimento = LocalDate.of(ano,mes, dia);
+               
+               Medico novoMedico = new Medico(
+                Integer.valueOf(linhaVetor[0]),
+                linhaVetor[1],
+                linhaVetor[2],
+                linhaVetor[3],
+                linhaVetor[4],
+                dataNascimento,
+                especialidades);
+                 medicos.add(novoMedico);
+                 linha = br.readLine();
             }
             
             br.close();
-            
+           
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(
            null, "Ocorreu um erro ao abrir o arquivo",
