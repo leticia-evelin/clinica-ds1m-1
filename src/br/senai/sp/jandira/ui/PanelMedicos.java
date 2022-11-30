@@ -107,7 +107,6 @@ public class PanelMedicos extends javax.swing.JPanel {
     private void buttonAlterarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAlterarMedicoActionPerformed
 
         linha = tabelaMedico.getSelectedRow();
-
         if(linha != -1) {
             alterar();
         } else {
@@ -116,10 +115,11 @@ public class PanelMedicos extends javax.swing.JPanel {
             "Médico",
             JOptionPane.ERROR_MESSAGE);
         }
+        criarTabelaMedicos();
     }//GEN-LAST:event_buttonAlterarMedicoActionPerformed
 
     private void buttonAdicionarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarMedicoActionPerformed
-       
+
         DialogMedico dialogMedico = new DialogMedico(
            null, 
            true, 

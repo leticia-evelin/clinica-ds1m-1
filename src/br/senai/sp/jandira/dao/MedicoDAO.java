@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -20,11 +21,15 @@ public class MedicoDAO {
     
     private Medico medico;
     private static ArrayList<Medico> medicos = new ArrayList<>();
-    private static final String ARQUIVO = "C:\\Users\\22282118\\projeto-java\\medico.txt";
-    private static final String ARQUIVO_TEMP = "C:\\Users\\22282118\\projeto-java\\medico_temp.txt";
+    // senai : private static final String ARQUIVO = "C:\\Users\\22282118\\projeto-java\\medico.txt";
+    // senai: private static final String ARQUIVO_TEMP = "C:\\Users\\22282118\\projeto-java\\medico_temp.txt";
+   //casa:
+    private static final String ARQUIVO = "C:\\Users\\Sony\\projeto-java\\medico.txt";
+    private static final String ARQUIVO_TEMP = "C:\\Users\\Sony\\projeto-java\\medico_temp.txt";
+    
     private static final Path PATH = Paths.get(ARQUIVO);
     private static final Path PATH_TEMP = Paths.get(ARQUIVO);
-     public static BufferedWriter bw;
+//     public static BufferedWriter bw;
     
     public MedicoDAO() {
     
@@ -35,7 +40,7 @@ public class MedicoDAO {
     }
 
     public static void gravar(Medico medico) {
-        
+        medicos.add(medico);
         
         // Gravar o medico no arquivo medico.txt
         
@@ -56,7 +61,6 @@ public class MedicoDAO {
            "ERRO",
            JOptionPane.ERROR_MESSAGE);
         }
-        medicos.add(medico);
     }
     
     public static boolean excluir (Integer codigo) {
@@ -66,7 +70,7 @@ public class MedicoDAO {
                break;
             }
         }
-       atualizarArquivo();
+//       atualizarArquivo();
        return false;
     }
     
@@ -84,11 +88,12 @@ public class MedicoDAO {
           if(m.getCodigo().equals(medico.getCodigo())) {
               medicos.set(medicos.indexOf(m), medico);
               break;
-            }
-          atualizarArquivo();
+            }          
         }
+        atualizarArquivo();
     }
     
+     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     private static void atualizarArquivo() {
         File arquivoAtual = new File(ARQUIVO);
@@ -131,7 +136,7 @@ public class MedicoDAO {
        
      public static ArrayList<Medico> listarTodos() {
         return medicos;
-    }
+      }
    
     public static void getListaDeMedicos() throws IOException {
          try {
@@ -144,37 +149,43 @@ public class MedicoDAO {
             
            while(linha != null && !linha.isEmpty()) {
                String[] linhaVetor = linha.split(";");
-               System.out.println("0-" + linhaVetor[0]);
-               System.out.println("1-" + linhaVetor[1]);
-               System.out.println("2-" + linhaVetor[2]);
-               System.out.println("3-" + linhaVetor[3]);
-               System.out.println("4-" + linhaVetor[4]);
-               System.out.println("5-" + linhaVetor[5]);
-               
+                
+               //teste
+//               System.out.println("0-" + linhaVetor[0]);
+//               System.out.println("1-" + linhaVetor[1]);
+//               System.out.println("2-" + linhaVetor[2]);
+               //System.out.println("3-" + linhaVetor[3]);
+               //System.out.println("4-" + linhaVetor[4]);
+//               System.out.println("5-" + linhaVetor[5]);
+//               System.out.println("6-" + linhaVetor[6]);
+//               
+
+
                int i = 0;
                 ArrayList<Especialidade> especialidades = new ArrayList<>();
-                String[] especialidadesVetor = linhaVetor[6].split("#");
-                System.out.println("6-" + especialidadesVetor[0]);
-                System.out.println("-------------------------------------------------------");
+                //String[] especialidadesVetor = linhaVetor[6].split("#");
+                //System.out.println("6-" + especialidadesVetor[0]);
+                //System.out.println("-------------------------------------------------------");
                 while(linhaVetor.length > i +6){
-                   //especialidades.add(EspecialidadesDAO.getEspecialidade(Integer.valueOf(linhaVetor[6+i])));
+                 //especialidades.add(EspecialidadesDAO.getEspecialidade(Integer.valueOf(linhaVetor[6+i])));
                    i++;
                 }
                 
-                String[] data = linhaVetor[4].split("/");
-                int ano = Integer.parseInt(data[2]);
-                int mes = Integer.parseInt(data[1]);
-                int dia = Integer.parseInt(data[0]);
-                LocalDate dataNascimento = LocalDate.of(ano,mes, dia);
-               
+                //String[] data = linhaVetor[5].split("/");
+                //int ano = Integer.parseInt(data[2]);
+                //int mes = Integer.parseInt(data[1]);
+                //int dia = Integer.parseInt(data[0]);
+                //LocalDate dataNascimento = LocalDate.of(ano,mes, dia);
+//               
                Medico novoMedico = new Medico(
-                Integer.valueOf(linhaVetor[0]),
-                linhaVetor[1],
-                linhaVetor[2],
-                linhaVetor[3],
-                linhaVetor[4],
-                dataNascimento,
+                Integer.valueOf(linhaVetor[0]),//codigo
+                linhaVetor[1],//crm
+                linhaVetor[2],//nome
+                linhaVetor[3],//telefone
+                linhaVetor[4],//email
+                linhaVetor[5],//dataNascimento
                 especialidades);
+               
                 medicos.add(novoMedico);
                 linha = br.readLine();
             }

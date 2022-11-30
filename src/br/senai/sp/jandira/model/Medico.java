@@ -1,20 +1,19 @@
 package br.senai.sp.jandira.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
 
 public class Medico extends Pessoa{
 
-    public Medico(Integer valueOf, String par, String par1) {
-    }
-
     private static int contador = 100;
     private Integer codigo;
     private String crm;
     private ArrayList<Especialidade> especialidades;
-    //private ArrayList<PlanoDeSaude> planos;
+    
+     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public Medico() {
       atualizarCodigo();
@@ -25,8 +24,16 @@ public class Medico extends Pessoa{
         this.codigo = contador;
     }
 
-    public Medico(Integer valueOf, String string, String string0, String string1, String string2, LocalDate dataNascimento, ArrayList<Especialidade> especialidades) {
-        
+    public Medico(Integer codigo, String crm, String nome, String telefone, String email, String dataNascimento, ArrayList especialidades) {
+        this.codigo = codigo;
+        this.crm = crm;
+        setNome(nome);
+        setTelefone(telefone);
+        setEmail(email);
+        setDataNascimento(dataNascimento);
+        this.especialidades = especialidades;
+//        this.codigo = codigo;;
+        this.contador = codigo++;
     }
 
     
@@ -38,6 +45,10 @@ public class Medico extends Pessoa{
 	this.crm = crm;
     }
 
+    public String getEspecialidadesStr() {
+        return especialidades.toString();
+    }
+    
     public ArrayList<Especialidade> getEspecialidades() {
 	return especialidades;
     }
@@ -69,20 +80,32 @@ public class Medico extends Pessoa{
         this.codigo = contador;
     }
     
-     public Medico(int codigo, String crm, String nome, String telefone, String email, LocalDate dataNascimento, ArrayList especialidades) {
-        this.codigo = codigo;
-        this.crm = crm;
-        setNome(nome);
-        setTelefone(telefone);
-        setEmail(email);
-        setDataNascimento(dataNascimento);
-        this.especialidades = especialidades;
-        this.contador = this.codigo;
-    }
+     
     public String getMedicoSeparadoPorPontoEVirgula() {
-        String medicoStr = this.codigo + ";" + this.crm + ";" + this.getNome() + 
-        ";" + super.getTelefone() + ";" + super.getTelefone() + ";" +
-        super.getEmail() + ";" + super.getDataNascimento();
-        return medicoStr;
+        
+//          String medicoStr = this.codigo + ";" + this.crm + ";" + this.getNome() + 
+//          ";" + super.getTelefone() + ";" +
+//          super.getEmail() + ";" + super.getDataNascimento();
+//           return medicoStr;
+                
+        String getCodigoEspecialidades = "";
+        for (Especialidade e : especialidades) {
+            getCodigoEspecialidades += e.getCodigo() + ";";
+        }
+        return this.codigo + ";" + this.crm + ";" + getNome() + ";" + 
+        getTelefone() + ";" + getEmail() + ";" + 
+        getDataNascimento() + ";" + getCodigoEspecialidades;
     } 
+//    
+     public ArrayList<String> getListaDeEspecialidadesDoMedico() {
+        ArrayList<String> dados = new ArrayList<>();
+        for (Especialidade e : especialidades) {
+            dados.add(e.getNome());
+        }
+            DefaultListModel<String> ListaModel = new DefaultListModel<>();
+        
+        ListaModel.addAll(dados);
+        
+        return dados; 
+    }
 }
