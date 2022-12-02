@@ -10,7 +10,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -21,15 +20,20 @@ public class MedicoDAO {
     
     private Medico medico;
     private static ArrayList<Medico> medicos = new ArrayList<>();
-    // senai : private static final String ARQUIVO = "C:\\Users\\22282118\\projeto-java\\medico.txt";
-    // senai: private static final String ARQUIVO_TEMP = "C:\\Users\\22282118\\projeto-java\\medico_temp.txt";
+    private Especialidade especialidade;
+    private ArrayList<Especialidade> especialidades;
+    
+    private static final String ARQUIVO = "C:\\Users\\22282118\\projeto-java\\medico.txt";
+    private static final String ARQUIVO_TEMP = "C:\\Users\\22282118\\projeto-java\\medico_temp.txt";
+    
    //casa:
-    private static final String ARQUIVO = "C:\\Users\\Sony\\projeto-java\\medico.txt";
-    private static final String ARQUIVO_TEMP = "C:\\Users\\Sony\\projeto-java\\medico_temp.txt";
+//    private static final String ARQUIVO = "C:\\Users\\Sony\\projeto-java\\medico.txt";
+//    private static final String ARQUIVO_TEMP = "C:\\Users\\Sony\\projeto-java\\medico_temp.txt";
     
     private static final Path PATH = Paths.get(ARQUIVO);
     private static final Path PATH_TEMP = Paths.get(ARQUIVO);
-//     public static BufferedWriter bw;
+    
+    private static final int QUANTIDADE_INDICES_ARQUIVO_PADRAO = 6;
     
     public MedicoDAO() {
     
@@ -70,7 +74,7 @@ public class MedicoDAO {
                break;
             }
         }
-//       atualizarArquivo();
+       atualizarArquivo();
        return false;
     }
     
@@ -149,43 +153,28 @@ public class MedicoDAO {
             
            while(linha != null && !linha.isEmpty()) {
                String[] linhaVetor = linha.split(";");
-                
-               //teste
-//               System.out.println("0-" + linhaVetor[0]);
-//               System.out.println("1-" + linhaVetor[1]);
-//               System.out.println("2-" + linhaVetor[2]);
-               //System.out.println("3-" + linhaVetor[3]);
-               //System.out.println("4-" + linhaVetor[4]);
-//               System.out.println("5-" + linhaVetor[5]);
-//               System.out.println("6-" + linhaVetor[6]);
-//               
+            
+               ArrayList<Especialidade> especialidades = new ArrayList<>();
 
-
-               int i = 0;
-                ArrayList<Especialidade> especialidades = new ArrayList<>();
-                //String[] especialidadesVetor = linhaVetor[6].split("#");
-                //System.out.println("6-" + especialidadesVetor[0]);
-                //System.out.println("-------------------------------------------------------");
-                while(linhaVetor.length > i +6){
-                 //especialidades.add(EspecialidadesDAO.getEspecialidade(Integer.valueOf(linhaVetor[6+i])));
-                   i++;
-                }
-                
-                //String[] data = linhaVetor[5].split("/");
-                //int ano = Integer.parseInt(data[2]);
-                //int mes = Integer.parseInt(data[1]);
-                //int dia = Integer.parseInt(data[0]);
-                //LocalDate dataNascimento = LocalDate.of(ano,mes, dia);
-//               
-               Medico novoMedico = new Medico(
-                Integer.valueOf(linhaVetor[0]),//codigo
-                linhaVetor[1],//crm
-                linhaVetor[2],//nome
-                linhaVetor[3],//telefone
-                linhaVetor[4],//email
-                linhaVetor[5],//dataNascimento
-                especialidades);
                
+               int i = 0;
+ 
+               while(linhaVetor.length > i + QUANTIDADE_INDICES_ARQUIVO_PADRAO){
+                   especialidades.add(EspecialidadesDAO.getEspecialidade(Integer.valueOf(linhaVetor[QUANTIDADE_INDICES_ARQUIVO_PADRAO + i])));
+                    i++;
+                }
+                    
+                String[] data = linhaVetor[5].split("/");           
+
+                Medico novoMedico = new Medico(Integer.valueOf(linhaVetor[0]),
+                linhaVetor[1],
+                linhaVetor[2],
+                linhaVetor[3],
+                linhaVetor[4],
+                linhaVetor[5],
+                especialidades);
+
+                
                 medicos.add(novoMedico);
                 linha = br.readLine();
             }
@@ -217,7 +206,6 @@ public class MedicoDAO {
         String[] titulos = {"Códigos", "CRM", "Nome do Médico", "Telefone"};
         
         DefaultTableModel tableModel = new DefaultTableModel(dados, titulos);
-        
         return tableModel;
     }   
 }

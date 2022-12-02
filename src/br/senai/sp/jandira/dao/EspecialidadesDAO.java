@@ -202,13 +202,14 @@ public class EspecialidadesDAO { // Simular nosso banco de dados
     }
     
     public static ArrayList<String> getListaDeNomes() {
+        DefaultListModel<String> listaModel = new DefaultListModel<>();
         ArrayList<String> dados = new ArrayList<>();
-        for (Especialidade e : especialidades) {
-            dados.add(e.getNome());
+        
+        for (Especialidade especialidade : especialidades) {
+            dados.add(especialidade.getNome());
         }
-        DefaultListModel<String> ListaModel = new DefaultListModel<>();
-
-        ListaModel.addAll(dados);
+        
+        listaModel.addAll(dados);
 
         return dados;
 

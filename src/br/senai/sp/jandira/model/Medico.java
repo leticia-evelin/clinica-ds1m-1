@@ -32,7 +32,6 @@ public class Medico extends Pessoa{
         setEmail(email);
         setDataNascimento(dataNascimento);
         this.especialidades = especialidades;
-//        this.codigo = codigo;;
         this.contador = codigo++;
     }
 
@@ -45,9 +44,9 @@ public class Medico extends Pessoa{
 	this.crm = crm;
     }
 
-    public String getEspecialidadesStr() {
-        return especialidades.toString();
-    }
+//    public String getEspecialidadesStr() {
+//        return especialidades.toString();
+//    }
     
     public ArrayList<Especialidade> getEspecialidades() {
 	return especialidades;
@@ -83,28 +82,28 @@ public class Medico extends Pessoa{
      
     public String getMedicoSeparadoPorPontoEVirgula() {
         
-//          String medicoStr = this.codigo + ";" + this.crm + ";" + this.getNome() + 
-//          ";" + super.getTelefone() + ";" +
-//          super.getEmail() + ";" + super.getDataNascimento();
-//           return medicoStr;
-                
-        String getCodigoEspecialidades = "";
-        for (Especialidade e : especialidades) {
-            getCodigoEspecialidades += e.getCodigo() + ";";
-        }
         return this.codigo + ";" + this.crm + ";" + getNome() + ";" + 
         getTelefone() + ";" + getEmail() + ";" + 
-        getDataNascimento() + ";" + getCodigoEspecialidades;
+        getDataNascimento() + ";" + getCodigosEspecialidades();
     } 
-//    
-     public ArrayList<String> getListaDeEspecialidadesDoMedico() {
-        ArrayList<String> dados = new ArrayList<>();
-        for (Especialidade e : especialidades) {
-            dados.add(e.getNome());
+    
+    public String getCodigosEspecialidades() {
+        String codigosEspecialidades = "";
+        for (Especialidade especialidade : especialidades) {
+            codigosEspecialidades += especialidade.getCodigo() + ";";
         }
-            DefaultListModel<String> ListaModel = new DefaultListModel<>();
+        return codigosEspecialidades;
+    }
+
+     public ArrayList<String> getListaDeEspecialidadesDoMedico() {
+        DefaultListModel<String> listaModel = new DefaultListModel<>();
+        ArrayList<String> dados = new ArrayList<>();
         
-        ListaModel.addAll(dados);
+        for (Especialidade especialidade : especialidades) {
+            dados.add(especialidade.getNome());
+        }
+          
+        listaModel.addAll(dados);
         
         return dados; 
     }
