@@ -3,7 +3,10 @@ package br.senai.sp.jandira.ui;
 import br.senai.sp.jandira.dao.EspecialidadesDAO;
 import br.senai.sp.jandira.dao.MedicoDAO;
 import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
+import java.awt.Color;
 import java.io.IOException;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 public class HomeFrame extends javax.swing.JFrame {
 
@@ -20,6 +23,8 @@ public class HomeFrame extends javax.swing.JFrame {
     PanelPlanosDeSaude panelPlanosDeSaude;
     PanelEspecialidades panelEspecialidades;
     PanelMedicos panelMedicos;
+    JButton ultimoBotao;
+    JPanel ultimoPanel;
     
     // Constantes da classe
     private final int POSICAO_X = 10;
@@ -183,17 +188,13 @@ public class HomeFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMedicosActionPerformed
-         panelHome.setVisible(false);
-         panelMedicos.setVisible(true);
+         trocarCor(buttonMedicos);
+         trocarPanel(panelMedicos);
     }//GEN-LAST:event_buttonMedicosActionPerformed
 
     private void buttonPlanosDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPlanosDeSaudeActionPerformed
-        panelHome.setVisible(false);
-        panelPlanosDeSaude.setVisible(true);
-        buttonPlanosDeSaude.setBackground(new java.awt.Color(153,255,153));
-        buttonHome.setBackground(new java.awt.Color(204,204,204));
-        buttonPlanosDeSaude.setBackground(new java.awt.Color(153,255,153));
-        buttonEspecialidades.setBackground(new java.awt.Color(204,204,204));
+        trocarCor(buttonPlanosDeSaude);
+        trocarPanel(panelPlanosDeSaude);
     }//GEN-LAST:event_buttonPlanosDeSaudeActionPerformed
 
     private void buttonPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPacientesActionPerformed
@@ -201,26 +202,46 @@ public class HomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonPacientesActionPerformed
 
     private void buttonEspecialidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEspecialidadesActionPerformed
-        panelHome.setVisible(false);
-        panelEspecialidades.setVisible(true);
-        buttonEspecialidades.setBackground(new java.awt.Color(153,255,153));
-        buttonHome.setBackground(new java.awt.Color(204,204,204));
-        buttonEspecialidades.setBackground(new java.awt.Color(153,255,153));
-        buttonPlanosDeSaude.setBackground(new java.awt.Color(204,204,204));
+        trocarCor(buttonEspecialidades);
+        trocarPanel(panelEspecialidades);
     }//GEN-LAST:event_buttonEspecialidadesActionPerformed
 
     private void buttonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHomeActionPerformed
-        panelHome.setVisible(true);
-        panelPlanosDeSaude.setVisible(false);
-        buttonHome.setBackground(new java.awt.Color(153,255,153));
-        buttonPlanosDeSaude.setBackground(new java.awt.Color(204,204,204));
-        buttonEspecialidades.setBackground(new java.awt.Color(204,204,204));
+        trocarCor(buttonHome);
+        trocarPanel(panelHome);
     }//GEN-LAST:event_buttonHomeActionPerformed
 
     private void buttonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSairActionPerformed
        dispose();
     }//GEN-LAST:event_buttonSairActionPerformed
 
+    public void trocarCor(JButton button) {
+        button.setBackground(new Color(153,255,153));
+        
+        if(this.ultimoBotao == null) {
+            this.ultimoBotao = buttonHome;
+            this.ultimoBotao.setBackground(new Color(204, 204, 204));
+        } else if (this.ultimoBotao == button) {
+
+        } else {
+            this.ultimoBotao.setBackground(new Color(204, 204, 204));
+        }
+        this.ultimoBotao = button;
+    }
+    
+    public void trocarPanel(JPanel panel) {
+        if (this.ultimoPanel == null) {
+            this.ultimoPanel = panelHome;
+            this.ultimoPanel.setVisible(false);
+            panel.setVisible(true);
+        } else if (this.ultimoPanel == panel) {
+
+        } else {
+            this.ultimoPanel.setVisible(false);
+            panel.setVisible(true);
+        }
+        this.ultimoPanel = panel;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAgenda;
     private javax.swing.JButton buttonEspecialidades;
